@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 
 import './styles/App.scss'
-import StaffTab from '../pages/Staff/ui/Staff'
-import { Home } from '../pages/Home/ui/Home'
+import StaffTab from '../pages/Staff'
+import { Home } from '../pages/Home'
 import { Header } from '../widgets/Header'
 
 function App() {

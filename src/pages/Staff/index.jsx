@@ -1,6 +1,6 @@
 import { AgGridReact } from 'ag-grid-react'
-import '../lib/ag-grid.css'
-import '../lib/ag-theme-quartz.css'
+import '../Staff/lib/ag-grid.css'
+import '../Staff/lib/ag-theme-quartz.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 

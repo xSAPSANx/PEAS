@@ -1,5 +1,5 @@
-import { Project } from '../../../widgets/Projects'
-import './Home.scss'
+import { Project } from '../../widgets/Projects'
+import './ui/Home.scss'
 
 export const Home = () => {
 	return (

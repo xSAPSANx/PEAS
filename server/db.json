@@ -15,5 +15,10 @@
 			"Grade": "Senior",
 			"ProjectName": "СТЦ"
 		}
+	],
+	"project": [
+		{ "projectName": "Peas", "staffNum": "10" },
+		{ "projectName": "WT", "staffNum": "15" },
+		{ "projectName": "VK", "staffNum": "2" }
 	]
 }
