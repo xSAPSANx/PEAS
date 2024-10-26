@@ -17,8 +17,118 @@
 		}
 	],
 	"project": [
-		{ "projectName": "Peas", "staffNum": "10" },
-		{ "projectName": "WT", "staffNum": "15" },
-		{ "projectName": "VK", "staffNum": "2" }
+		{
+			"currentValue": [
+				{ "projectName": "Peas", "staffNum": "10" },
+				{
+					"branchName": "VK",
+					"staffNum": "30",
+					"children": [
+						{
+							"currentValue": [
+								{ "projectName": "VK music", "staffNum": "15" },
+								{
+									"branchName": "VK group",
+									"staffNum": "25",
+									"children": [
+										{
+											"currentValue": [
+												{ "projectName": "Sub WT 1", "staffNum": "12" },
+												{
+													"branchName": "SubBranch 1",
+													"staffNum": "10",
+													"children": [
+														{
+															"currentValue": [
+																{ "projectName": "Sub WT 1.1", "staffNum": "5" },
+																{
+																	"branchName": "SubBranch 1.1",
+																	"staffNum": "8",
+																	"children": [
+																		{
+																			"currentValue": [
+																				{ "projectName": "Sub WT 1.1.1", "staffNum": "3" },
+																				{
+																					"branchName": "SubBranch 1.1.1",
+																					"staffNum": "4",
+																					"children": [
+																						{
+																							"currentValue": [
+																								{ "projectName": "Sub WT 1.1.1.1", "staffNum": "2" },
+																								{
+																									"branchName": "SubBranch 1.1.1.1",
+																									"staffNum": "2",
+																									"children": [
+																										{
+																											"currentValue": [
+																												{ "projectName": "Sub WT 1.1.1.1.1", "staffNum": "1" },
+																												{
+																													"branchName": "SubBranch 1.1.1.1.1",
+																													"staffNum": "1",
+																													"children": [
+																														{
+																															"currentValue": [
+																																{ "projectName": "Sub WT 1.1.1.1.1.1", "staffNum": "1" }
+																															],
+																															"next": null
+																														}
+																													]
+																												}
+																											],
+																											"next": null
+																										}
+																									]
+																								}
+																							],
+																							"next": null
+																						}
+																					]
+																				}
+																			],
+																			"next": null
+																		}
+																	]
+																}
+															],
+															"next": null
+														}
+													]
+												}
+											],
+											"next": null
+										},
+										{
+											"currentValue": [{ "projectName": "Sub WT 2", "staffNum": "13" }],
+											"next": null
+										}
+									]
+								}
+							],
+							"next": null
+						},
+						{
+							"currentValue": [
+								{ "projectName": "WT 2", "staffNum": "20" },
+								{
+									"branchName": "SubProject A-2",
+									"staffNum": "30",
+									"children": [
+										{
+											"currentValue": [{ "projectName": "Sub WT 3", "staffNum": "14" }],
+											"next": null
+										},
+										{
+											"currentValue": [{ "projectName": "Sub WT 4", "staffNum": "16" }],
+											"next": null
+										}
+									]
+								}
+							],
+							"next": null
+						}
+					]
+				}
+			]
+		}
 	]
 }

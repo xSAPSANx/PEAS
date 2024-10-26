@@ -1,0 +1,51 @@
+.project-container {
+	margin: 8px 0;
+	transition: border-color 0.3s ease;
+	border: 1px solid transparent; // По умолчанию рамка прозрачная
+	border-radius: 4px; // Скругленные углы
+
+	&.branch-open {
+		border-color: #9e9e9e; // Серый цвет рамки для открытого элемента
+	}
+
+	// Добавление рамки для вложенных проектов
+	& > .collapse {
+		border: 1px solid #9e9e9e; // Серый цвет рамки для вложенных элементов
+		border-radius: 4px;
+		padding: 8px; // Отступ внутри рамки
+		margin-top: 4px; // Отступ сверху для визуального отделения
+	}
+}
+
+.typograph {
+	display: flex; // Активируем Flexbox
+	justify-content: space-between; // Элементы по краям
+}
+
+.list-item-button {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	cursor: pointer;
+	justify-content: space-between; // Распределение пространства между элементами
+
+	&:hover {
+		background-color: #e0e0e0; // Светло-серый фон при наведении
+	}
+}
+
+.list-item-text {
+	flex: 1; // Занять всё доступное пространство
+	display: flex; // Используем flex для текстового блока
+	align-items: center; // Вертикальное выравнивание текста
+}
+
+.staff-number {
+	display: flex;
+	align-items: center;
+	padding: 4px 8px; // Отступ внутри рамки
+	border: 1px solid #9e9e9e; // Серый цвет рамки
+	border-radius: 20px; // Овальные края
+	margin-left: auto; // Сдвинуть элемент вправо
+	margin-left: 16px; // Отступ от названия проекта
+}

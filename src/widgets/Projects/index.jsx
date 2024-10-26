@@ -1,16 +1,27 @@
-import { ListItemButton, ListItemText, Collapse } from '@mui/material'
-import {
-	AccountBox,
-	InboxOutlined,
-	ListOutlined,
-	ListAltOutlined,
-	StarBorderOutlined,
-	ArrowDropUp,
-	ArrowDropDown,
-} from '@mui/icons-material'
+import { ListItemButton, ListItemText, Collapse, Typography, List, Box } from '@mui/material'
+import { AccountBox, ListOutlined, ListAltOutlined, ArrowDropUp, ArrowDropDown } from '@mui/icons-material'
 import { useState } from 'react'
 
-export const Project = () => {
+import './projects.scss'
+/* eslint-disable react/prop-types */
+
+const LeafComponent = ({ leaf, indent }) => (
+	<ListItemButton sx={{ pl: indent }}>
+		<ListAltOutlined sx={{ mr: 1 }} />
+		<ListItemText
+			primary={
+				<Typography className={'typograph'} variant='body1' display='flex' alignItems='center' marginRight={3.2}>
+					{leaf.projectName}
+					<span className={'staff-number'}>
+						{leaf.staffNum} <AccountBox sx={{ ml: 1 }} />
+					</span>
+				</Typography>
+			}
+		/>
+	</ListItemButton>
+)
+
+const BranchComponent = ({ branch, indent }) => {
 	const [open, setOpen] = useState(false)
 
 	const handleClick = () => {
@@ -18,33 +29,53 @@ export const Project = () => {
 	}
 
 	return (
-		<div className='project'>
-			<ListItemButton id='test' onClick={handleClick}>
-				<ListOutlined>
-					<InboxOutlined />
-				</ListOutlined>
-				<ListItemText primary='Проект' />
-				<p className='numberEmp'>
-					12 <AccountBox />
-				</p>
-				{open ? <ArrowDropUp /> : <ArrowDropDown />}
+		<div className={open ? 'project-container branch-open' : 'project-container'}>
+			<ListItemButton onClick={branch.children.length > 0 ? handleClick : null} sx={{ pl: indent }}>
+				<ListOutlined sx={{ mr: 1 }} />
+				<ListItemText
+					primary={
+						<Typography className={'typograph'} variant='body1' display='flex' alignItems='center'>
+							{branch.branchName}
+							<span className={'staff-number'}>
+								{branch.staffNum} <AccountBox sx={{ ml: 1 }} />
+							</span>
+						</Typography>
+					}
+				/>
+				{branch.children.length > 0 && (open ? <ArrowDropUp /> : <ArrowDropDown />)}
 			</ListItemButton>
-			<Collapse in={open} timeout='auto' unmountOnExit>
-				<ListItemButton sx={{ pl: 4 }}>
-					<ListAltOutlined>
-						<StarBorderOutlined />
-					</ListAltOutlined>
-					<ListItemText primary='Подпроект 1' />
-				</ListItemButton>
-			</Collapse>
-			<Collapse in={open} timeout='auto' unmountOnExit>
-				<ListItemButton sx={{ pl: 4 }}>
-					<ListAltOutlined>
-						<StarBorderOutlined />
-					</ListAltOutlined>
-					<ListItemText primary='Подпроект 2' />
-				</ListItemButton>
-			</Collapse>
+			{branch.children.length > 0 && (
+				<Collapse in={open} timeout='auto' unmountOnExit>
+					<List component='div' disablePadding>
+						{branch.children.map((childNode, index) => (
+							<NodeComponent node={childNode} key={index} indent={indent + 3} />
+						))}
+					</List>
+				</Collapse>
+			)}
 		</div>
 	)
 }
+
+const NodeComponent = ({ node, indent = 0 }) => (
+	<div>
+		{node.currentValue.map((item, index) =>
+			item.projectName ? (
+				<LeafComponent leaf={item} key={index} indent={indent} />
+			) : (
+				<BranchComponent branch={item} key={index} indent={indent} />
+			)
+		)}
+		{node.next && <NodeComponent node={node.next} indent={indent} />}
+	</div>
+)
+
+export const ProjectComponent = ({ project }) => (
+	<Box>
+		<List>
+			{project?.map((node, index) => (
+				<NodeComponent node={node} key={index} />
+			))}
+		</List>
+	</Box>
+)
