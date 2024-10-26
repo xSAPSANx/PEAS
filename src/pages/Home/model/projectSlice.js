@@ -9,7 +9,7 @@ const initialState = {
 const projectSlice = createSlice({
 	name: 'project',
 	initialState,
-	reducer: {
+	reducers: {
 		setProject(state, action) {
 			state.project = action.payload
 		},

@@ -1,0 +1,19 @@
+{
+	"staff": [
+		{
+			"FullName": "Ульянов Данила Алексеевич",
+			"Grade": "Middle",
+			"ProjectName": "СТЦ"
+		},
+		{
+			"FullName": "Иванов Иван Иванович",
+			"Grade": "Senior",
+			"ProjectName": "Яндекс"
+		},
+		{
+			"FullName": "Жуков Григорий Аркадьевич",
+			"Grade": "Senior",
+			"ProjectName": "СТЦ"
+		}
+	]
+}
