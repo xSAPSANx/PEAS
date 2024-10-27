@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import { ListItemButton, ListItemText, Collapse, Typography, List, Box } from '@mui/material'
-import { AccountBox, ListOutlined, ListAltOutlined, ArrowDropUp, ArrowDropDown } from '@mui/icons-material'
+import { ListItemButton, ListItemText, Collapse, Typography, List, Box, IconButton } from '@mui/material'
+import { AccountBox, ListOutlined, ListAltOutlined, ArrowDropUp, ArrowDropDown, Delete } from '@mui/icons-material'
 import { useState } from 'react'
 
 import './projects.scss'
 
-// Компонент для отображения листового узла (без children)
 const LeafComponent = ({ leaf, indent }) => (
 	<ListItemButton sx={{ pl: indent }}>
 		<ListAltOutlined sx={{ mr: 1 }} />
@@ -23,8 +22,7 @@ const LeafComponent = ({ leaf, indent }) => (
 	</ListItemButton>
 )
 
-// Компонент для отображения узла с ветвями (имеет children)
-const BranchComponent = ({ branch, indent }) => {
+const BranchComponent = ({ branch, indent, onDelete }) => {
 	const [open, setOpen] = useState(false)
 
 	const handleClick = () => {
@@ -45,6 +43,13 @@ const BranchComponent = ({ branch, indent }) => {
 						</Typography>
 					}
 				/>
+				{branch.id && indent === 0 && (
+					<IconButton onClick={() => onDelete(branch.id)} sx={{ color: '#DC143C' }}>
+						{' '}
+						{/* Light red color */}
+						<Delete />
+					</IconButton>
+				)}
 				{branch.children.length > 0 && (open ? <ArrowDropUp /> : <ArrowDropDown />)}
 			</ListItemButton>
 			{branch.children.length > 0 && (
@@ -60,23 +65,21 @@ const BranchComponent = ({ branch, indent }) => {
 	)
 }
 
-// Универсальный компонент для отображения узла (либо ветвь, либо лист)
-const NodeComponent = ({ node, indent = 0 }) => (
+const NodeComponent = ({ node, indent = 0, onDelete }) => (
 	<div>
 		{node.children && node.children.length > 0 ? (
-			<BranchComponent branch={node} indent={indent} />
+			<BranchComponent branch={node} indent={indent} onDelete={onDelete} />
 		) : (
 			<LeafComponent leaf={node} indent={indent} />
 		)}
 	</div>
 )
 
-// Главный компонент для отображения иерархии проектов
-export const ProjectComponent = ({ project }) => (
+export const ProjectComponent = ({ project, onDelete }) => (
 	<Box>
 		<List>
 			{(Array.isArray(project) ? project : []).map((node, index) => (
-				<NodeComponent node={node} key={index} />
+				<NodeComponent node={node} key={index} onDelete={onDelete} />
 			))}
 		</List>
 	</Box>

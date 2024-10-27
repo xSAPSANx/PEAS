@@ -13,13 +13,7 @@ const StaffTab = () => {
 	const [colDefs, setColDefs] = useState([
 		{ field: 'FullName', width: 300 },
 		{ field: 'Grade' },
-		{
-			field: 'ProjectName',
-			cellEditor: 'agSelectCellEditor',
-			cellEditorParams: {
-				values: ['Яндекс', 'СТЦ'],
-			},
-		},
+		{ field: 'ProjectName' },
 	])
 
 	useEffect(() => {

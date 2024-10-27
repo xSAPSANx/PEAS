@@ -1,24 +1,104 @@
 {
   "staff": [
     {
-      "FullName": "Ульянов Данила Алексеевич",
-      "Grade": "Middle",
-      "ProjectName": "СТЦ"
+      "FullName": "Смирнов Петр Александрович",
+      "Grade": "Senior",
+      "ProjectName": "Мегафон"
     },
     {
-      "FullName": "Иванов Иван Иванович",
+      "FullName": "Кузнецова Ольга Михайловна",
+      "Grade": "Middle",
+      "ProjectName": "Сбербанк"
+    },
+    {
+      "FullName": "Воробьев Алексей Сергеевич",
+      "Grade": "Junior",
+      "ProjectName": "Газпром"
+    },
+    {
+      "FullName": "Николаева Анна Дмитриевна",
+      "Grade": "Middle",
+      "ProjectName": "ВТБ"
+    },
+    {
+      "FullName": "Павлов Дмитрий Олегович",
+      "Grade": "Senior",
+      "ProjectName": "Роснефть"
+    },
+    {
+      "FullName": "Соколова Ирина Владимировна",
+      "Grade": "Middle",
+      "ProjectName": "Тинькофф"
+    },
+    {
+      "FullName": "Попов Андрей Игоревич",
+      "Grade": "Junior",
+      "ProjectName": "Mail.ru"
+    },
+    {
+      "FullName": "Сергеев Максим Викторович",
       "Grade": "Senior",
       "ProjectName": "Яндекс"
     },
     {
-      "FullName": "Жуков Григорий Аркадьевич",
-      "Grade": "Senior",
+      "FullName": "Петрова Наталья Константиновна",
+      "Grade": "Junior",
+      "ProjectName": "Лаборатория Касперского"
+    },
+    {
+      "FullName": "Козлов Илья Григорьевич",
+      "Grade": "Middle",
       "ProjectName": "СТЦ"
     },
     {
-      "FullName": "Жуков Григорий Аркадьевич",
+      "FullName": "Новиков Владимир Дмитриевич",
       "Grade": "Senior",
+      "ProjectName": "Сбербанк"
+    },
+    {
+      "FullName": "Сидорова Елена Николаевна",
+      "Grade": "Middle",
+      "ProjectName": "Мегафон"
+    },
+    {
+      "FullName": "Иванов Иван Иванович",
+      "Grade": "Senior",
+      "ProjectName": "Газпром"
+    },
+    {
+      "FullName": "Федоров Павел Сергеевич",
+      "Grade": "Junior",
+      "ProjectName": "Mail.ru"
+    },
+    {
+      "FullName": "Григорьева Татьяна Викторовна",
+      "Grade": "Middle",
+      "ProjectName": "Тинькофф"
+    },
+    {
+      "FullName": "Пономарев Артем Алексеевич",
+      "Grade": "Junior",
       "ProjectName": "СТЦ"
+    },
+    {
+      "FullName": "Морозова Наталья Олеговна",
+      "Grade": "Senior",
+      "ProjectName": "ВТБ"
+    },
+    {
+      "FullName": "Романов Михаил Михайлович",
+      "Grade": "Middle",
+      "ProjectName": "Лаборатория Касперского"
+    },
+    {
+      "FullName": "Гаврилова Ольга Андреевна",
+      "Grade": "Senior",
+      "ProjectName": "Роснефть"
+    },
+    {
+      "FullName": "Семенов Евгений Петрович",
+      "Grade": "Junior",
+      "ProjectName": "Сбербанк"
     }
   ],
   "projects": [
@@ -108,6 +188,30 @@
         {
           "projectName": "nhg",
           "staffNum": "1",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "d6f5",
+      "projectName": "erhg",
+      "staffNum": "123",
+      "children": [
+        {
+          "projectName": "tttt",
+          "staffNum": "2",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "8a7c",
+      "projectName": "ооооо",
+      "staffNum": "222",
+      "children": [
+        {
+          "projectName": "ллллллл",
+          "staffNum": "45",
           "children": []
         }
       ]

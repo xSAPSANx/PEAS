@@ -14,7 +14,6 @@ import {
 	InputLabel,
 } from '@mui/material'
 import { useDispatch } from 'react-redux'
-
 import { postProjects } from '../../pages/Home/model/projectSlice'
 
 const renderProjects = (projects, parentIndex = '') => {
@@ -102,7 +101,6 @@ const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 	)
 }
 
-// Основной компонент ProjectManager
 const ProjectManager = () => {
 	const [projects, setProjects] = useState([])
 	const [isModalOpen, setModalOpen] = useState(false)
@@ -139,9 +137,12 @@ const ProjectManager = () => {
 
 	const dispatch = useDispatch()
 	const clickClose = state => {
-		console.log(projects)
 		setModalOpen(state)
-		dispatch(postProjects(projects[0]))
+		if (projects.length === 0) {
+			return
+		} else {
+			dispatch(postProjects(projects[0]))
+		}
 	}
 
 	return (
