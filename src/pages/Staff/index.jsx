@@ -1,12 +1,15 @@
 import { AgGridReact } from 'ag-grid-react'
 import '../Staff/lib/ag-grid.css'
 import '../Staff/lib/ag-theme-quartz.css'
-import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { fetchStaff } from './model/staffSlice'
 
 const StaffTab = () => {
-	const [rowData, setRowData] = useState([])
-	// const [projects, setProjects] = useState([])
+	const dispatch = useDispatch()
+	const { staff } = useSelector(state => state.staff)
+
 	const [colDefs, setColDefs] = useState([
 		{ field: 'FullName', width: 300 },
 		{ field: 'Grade' },
@@ -19,25 +22,13 @@ const StaffTab = () => {
 		},
 	])
 
-	// console.log(projects)
-
 	useEffect(() => {
-		axios.get('http://localhost:3000/staff').then(response => {
-			setRowData(response.data)
-			return response
-		})
-		// .then(response => {
-		// 	setProjects(
-		// 		response.data.map(item => {
-		// 			return item.ProjectName
-		// 		})
-		// 	)
-		// })
+		dispatch(fetchStaff())
 	}, [])
 
 	return (
 		<div className='ag-theme-quartz' style={{ height: 1080 }}>
-			<AgGridReact rowData={rowData} columnDefs={colDefs} />
+			<AgGridReact rowData={staff.items} columnDefs={colDefs} />
 		</div>
 	)
 }

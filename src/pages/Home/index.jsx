@@ -1,19 +1,22 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { fetchProjects } from './model/projectSlice'
 import { ProjectComponent } from '../../widgets/Projects'
+import ProjectManager from '../../widgets/addProject'
 import './ui/Home.scss'
 
 export const Home = () => {
-	const [projects, setProjects] = useState([])
+	const dispatch = useDispatch()
+	const { projects } = useSelector(state => state.projects)
+
 	useEffect(() => {
-		axios.get('http://localhost:3000/project').then(response => {
-			setProjects(response.data)
-		})
+		dispatch(fetchProjects())
 	}, [])
 	return (
 		<div className='blockProjects'>
-			<ProjectComponent project={projects} />
+			<ProjectComponent project={projects.items} />
+			<ProjectManager />
 		</div>
 	)
 }

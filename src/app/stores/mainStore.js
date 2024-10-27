@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { projectReducer } from '../../pages/Home/model/projectSlice'
+import { staffReducer } from '../../pages/Staff/model/staffSlice'
 
 export const mainStore = configureStore({
 	reducer: {
-		project: projectReducer,
+		projects: projectReducer,
+		staff: staffReducer,
 	},
 })

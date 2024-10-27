@@ -14,9 +14,14 @@
 			"FullName": "Жуков Григорий Аркадьевич",
 			"Grade": "Senior",
 			"ProjectName": "СТЦ"
+		},
+		{
+			"FullName": "Жуков Григорий Аркадьевич",
+			"Grade": "Senior",
+			"ProjectName": "СТЦ"
 		}
 	],
-	"project": [
+	"projects": [
 		{
 			"currentValue": [
 				{ "projectName": "Peas", "staffNum": "10" },
