@@ -6,8 +6,13 @@ export const fetchProjects = createAsyncThunk('projects/fetchProjects', async ()
 	return data
 })
 
+export const postProjects = createAsyncThunk('projects/postProjects', async updatedData => {
+	const { data } = await axios.post('http://localhost:3000/projects', updatedData)
+	return data
+})
+
 const initialState = {
-	projects: {
+	projectsOld: {
 		items: [],
 		status: 'loading',
 	},
@@ -19,17 +24,31 @@ const projectSlice = createSlice({
 	reducers: {},
 	extraReducers: builder => {
 		builder
+			//получение проектов
 			.addCase(fetchProjects.pending, state => {
-				state.projects.items = []
-				state.projects.status = 'loading'
+				state.projectsOld.items = []
+				state.projectsOld.status = 'loading'
 			})
 			.addCase(fetchProjects.fulfilled, (state, action) => {
-				state.projects.items = action.payload
-				state.projects.status = 'loaded'
+				state.projectsOld.items = action.payload
+				state.projectsOld.status = 'loaded'
 			})
 			.addCase(fetchProjects.rejected, state => {
-				state.projects.items = []
-				state.projects.status = 'error'
+				state.projectsOld.items = []
+				state.projectsOld.status = 'error'
+			})
+			//добавление проекта
+			.addCase(postProjects.pending, state => {
+				state.projectsOld.items = []
+				state.projectsOld.status = 'loading'
+			})
+			.addCase(postProjects.fulfilled, (state, action) => {
+				state.projectsOld.items = action.payload
+				state.projectsOld.status = 'loaded'
+			})
+			.addCase(postProjects.rejected, state => {
+				state.projectsOld.items = []
+				state.projectsOld.status = 'error'
 			})
 	},
 })

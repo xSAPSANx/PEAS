@@ -1,139 +1,116 @@
 {
-	"staff": [
-		{
-			"FullName": "Ульянов Данила Алексеевич",
-			"Grade": "Middle",
-			"ProjectName": "СТЦ"
-		},
-		{
-			"FullName": "Иванов Иван Иванович",
-			"Grade": "Senior",
-			"ProjectName": "Яндекс"
-		},
-		{
-			"FullName": "Жуков Григорий Аркадьевич",
-			"Grade": "Senior",
-			"ProjectName": "СТЦ"
-		},
-		{
-			"FullName": "Жуков Григорий Аркадьевич",
-			"Grade": "Senior",
-			"ProjectName": "СТЦ"
-		}
-	],
-	"projects": [
-		{
-			"currentValue": [
-				{ "projectName": "Peas", "staffNum": "10" },
-				{
-					"branchName": "VK",
-					"staffNum": "30",
-					"children": [
-						{
-							"currentValue": [
-								{ "projectName": "VK music", "staffNum": "15" },
-								{
-									"branchName": "VK group",
-									"staffNum": "25",
-									"children": [
-										{
-											"currentValue": [
-												{ "projectName": "Sub WT 1", "staffNum": "12" },
-												{
-													"branchName": "SubBranch 1",
-													"staffNum": "10",
-													"children": [
-														{
-															"currentValue": [
-																{ "projectName": "Sub WT 1.1", "staffNum": "5" },
-																{
-																	"branchName": "SubBranch 1.1",
-																	"staffNum": "8",
-																	"children": [
-																		{
-																			"currentValue": [
-																				{ "projectName": "Sub WT 1.1.1", "staffNum": "3" },
-																				{
-																					"branchName": "SubBranch 1.1.1",
-																					"staffNum": "4",
-																					"children": [
-																						{
-																							"currentValue": [
-																								{ "projectName": "Sub WT 1.1.1.1", "staffNum": "2" },
-																								{
-																									"branchName": "SubBranch 1.1.1.1",
-																									"staffNum": "2",
-																									"children": [
-																										{
-																											"currentValue": [
-																												{ "projectName": "Sub WT 1.1.1.1.1", "staffNum": "1" },
-																												{
-																													"branchName": "SubBranch 1.1.1.1.1",
-																													"staffNum": "1",
-																													"children": [
-																														{
-																															"currentValue": [
-																																{ "projectName": "Sub WT 1.1.1.1.1.1", "staffNum": "1" }
-																															],
-																															"next": null
-																														}
-																													]
-																												}
-																											],
-																											"next": null
-																										}
-																									]
-																								}
-																							],
-																							"next": null
-																						}
-																					]
-																				}
-																			],
-																			"next": null
-																		}
-																	]
-																}
-															],
-															"next": null
-														}
-													]
-												}
-											],
-											"next": null
-										},
-										{
-											"currentValue": [{ "projectName": "Sub WT 2", "staffNum": "13" }],
-											"next": null
-										}
-									]
-								}
-							],
-							"next": null
-						},
-						{
-							"currentValue": [
-								{ "projectName": "WT 2", "staffNum": "20" },
-								{
-									"branchName": "SubProject A-2",
-									"staffNum": "30",
-									"children": [
-										{
-											"currentValue": [{ "projectName": "Sub WT 3", "staffNum": "14" }],
-											"next": null
-										},
-										{
-											"currentValue": [{ "projectName": "Sub WT 4", "staffNum": "16" }],
-											"next": null
-										}
-									]
-								}
-							],
-							"next": null
-						}
-					]
-				}
-			]
-		}
-	]
+  "staff": [
+    {
+      "FullName": "Ульянов Данила Алексеевич",
+      "Grade": "Middle",
+      "ProjectName": "СТЦ"
+    },
+    {
+      "FullName": "Иванов Иван Иванович",
+      "Grade": "Senior",
+      "ProjectName": "Яндекс"
+    },
+    {
+      "FullName": "Жуков Григорий Аркадьевич",
+      "Grade": "Senior",
+      "ProjectName": "СТЦ"
+    },
+    {
+      "FullName": "Жуков Григорий Аркадьевич",
+      "Grade": "Senior",
+      "ProjectName": "СТЦ"
+    }
+  ],
+  "projects": [
+    {
+      "id": "94a3",
+      "projectName": "test1",
+      "staffNum": "1",
+      "children": [
+        {
+          "projectName": "2",
+          "staffNum": "2",
+          "children": [
+            {
+              "projectName": "3",
+              "staffNum": "3",
+              "children": [
+                {
+                  "projectName": "4",
+                  "staffNum": "4",
+                  "children": [
+                    {
+                      "projectName": "5",
+                      "staffNum": "5",
+                      "children": [
+                        {
+                          "projectName": "6",
+                          "staffNum": "6",
+                          "children": [
+                            {
+                              "projectName": "7",
+                              "staffNum": "7",
+                              "children": [
+                                {
+                                  "projectName": "8",
+                                  "staffNum": "8",
+                                  "children": [
+                                    {
+                                      "projectName": "9",
+                                      "staffNum": "9",
+                                      "children": [
+                                        {
+                                          "projectName": "10",
+                                          "staffNum": "10",
+                                          "children": [
+                                            {
+                                              "projectName": "11",
+                                              "staffNum": "11",
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6df1",
+      "projectName": "лул",
+      "staffNum": "4",
+      "children": []
+    },
+    {
+      "id": "99d9",
+      "projectName": "рф",
+      "staffNum": "147",
+      "children": []
+    },
+    {
+      "id": "77f9",
+      "projectName": "haha",
+      "staffNum": "5",
+      "children": [
+        {
+          "projectName": "nhg",
+          "staffNum": "1",
+          "children": []
+        }
+      ]
+    }
+  ]
 }

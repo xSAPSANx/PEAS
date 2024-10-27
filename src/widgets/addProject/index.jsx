@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import { useState } from 'react'
 import {
 	Button,
@@ -8,34 +7,33 @@ import {
 	DialogContent,
 	DialogTitle,
 	TextField,
-	Typography,
 	Box,
 	MenuItem,
 	Select,
 	FormControl,
 	InputLabel,
 } from '@mui/material'
+import { useDispatch } from 'react-redux'
 
-// Компонент для рекурсивного отображения проектов и подпроектов
+import { postProjects } from '../../pages/Home/model/projectSlice'
+
 const renderProjects = (projects, parentIndex = '') => {
 	return projects.flatMap((project, index) => {
 		const currentValue = `${parentIndex}${index}`
 		const items = [
-			<MenuItem key={currentValue} value={currentValue}>
-				{`${'--'.repeat(parentIndex.length / 2)} ${project.projectName}`} {/* Добавляем отступы для вложенности */}
+			<MenuItem key={currentValue} value={project.projectName} name={project.projectName}>
+				{`${'--'.repeat(parentIndex.length / 2)} ${project.projectName}`}
 			</MenuItem>,
 		]
 
-		// Проверяем наличие подпроектов и рекурсивно вызываем renderProjects для них
 		if (project.children && project.children.length > 0) {
 			items.push(...renderProjects(project.children, currentValue + '-'))
 		}
 
-		return items // Возвращаем массив элементов
+		return items
 	})
 }
 
-// Модальное окно для создания проекта или подпроекта
 const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 	const [projectName, setProjectName] = useState('')
 	const [staffNum, setStaffNum] = useState('')
@@ -88,7 +86,7 @@ const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 						<MenuItem value=''>
 							<em>Нет</em>
 						</MenuItem>
-						{renderProjects(projects)} {/* Рендерим проекты и подпроекты */}
+						{renderProjects(projects)}
 					</Select>
 				</FormControl>
 			</DialogContent>
@@ -109,28 +107,41 @@ const ProjectManager = () => {
 	const [projects, setProjects] = useState([])
 	const [isModalOpen, setModalOpen] = useState(false)
 
-	const handleCreate = (newProject, parentIdentifier) => {
-		const parentIndex = parentIdentifier ? parentIdentifier.split('-')[0] : null
-		const childIndex = parentIdentifier ? parentIdentifier.split('-')[1] : null
-
-		if (parentIndex === null) {
-			// Если родительский проект не выбран, добавляем новый проект на верхнем уровне
-			setProjects(prevProjects => [...prevProjects, { ...newProject, children: [] }])
-		} else {
-			// Если выбран родительский проект или подпроект, добавляем его в children
-			setProjects(prevProjects => {
-				const updatedProjects = [...prevProjects]
-				if (childIndex !== undefined) {
-					// Добавляем новый проект в children существующего подпроекта
-					updatedProjects[parentIndex].children[childIndex].children.push(newProject)
-				} else {
-					// Добавляем новый проект в children выбранного проекта
-					updatedProjects[parentIndex].children.push(newProject)
-				}
-				return updatedProjects
-			})
+	const findAndAddChild = (projects, targetName, newProject) => {
+		for (let project of projects) {
+			if (project.projectName === targetName) {
+				project.children.push(newProject)
+				return true
+			}
+			if (project.children.length > 0) {
+				const found = findAndAddChild(project.children, targetName, newProject)
+				if (found) return true
+			}
 		}
-		console.log([...projects, newProject]) // Выводим обновленную структуру в консоль
+		return false
+	}
+
+	const handleCreate = (newProject, parentName) => {
+		if (!parentName) {
+			setProjects(prevProjects => [...prevProjects, newProject])
+			return
+		}
+
+		const updatedProjects = JSON.parse(JSON.stringify(projects))
+		const projectAdded = findAndAddChild(updatedProjects, parentName, newProject)
+
+		if (projectAdded) {
+			setProjects(updatedProjects)
+		} else {
+			console.error('Parent project not found')
+		}
+	}
+
+	const dispatch = useDispatch()
+	const clickClose = state => {
+		console.log(projects)
+		setModalOpen(state)
+		dispatch(postProjects(projects[0]))
 	}
 
 	return (
@@ -140,14 +151,10 @@ const ProjectManager = () => {
 			</Button>
 			<ProjectModal
 				isOpen={isModalOpen}
-				onClose={() => setModalOpen(false)}
+				onClose={() => clickClose(false)}
 				onCreate={handleCreate}
 				projects={projects}
 			/>
-			<Box mt={2}>
-				<Typography variant='h6'>Список проектов:</Typography>
-				<pre>{JSON.stringify(projects, null, 2)}</pre>
-			</Box>
 		</Box>
 	)
 }

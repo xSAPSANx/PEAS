@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
+
 import { ListItemButton, ListItemText, Collapse, Typography, List, Box } from '@mui/material'
 import { AccountBox, ListOutlined, ListAltOutlined, ArrowDropUp, ArrowDropDown } from '@mui/icons-material'
 import { useState } from 'react'
 
 import './projects.scss'
-/* eslint-disable react/prop-types */
 
+// Компонент для отображения листового узла (без children)
 const LeafComponent = ({ leaf, indent }) => (
 	<ListItemButton sx={{ pl: indent }}>
 		<ListAltOutlined sx={{ mr: 1 }} />
@@ -21,6 +23,7 @@ const LeafComponent = ({ leaf, indent }) => (
 	</ListItemButton>
 )
 
+// Компонент для отображения узла с ветвями (имеет children)
 const BranchComponent = ({ branch, indent }) => {
 	const [open, setOpen] = useState(false)
 
@@ -35,7 +38,7 @@ const BranchComponent = ({ branch, indent }) => {
 				<ListItemText
 					primary={
 						<Typography className={'typograph'} variant='body1' display='flex' alignItems='center'>
-							{branch.branchName}
+							{branch.projectName}
 							<span className={'staff-number'}>
 								{branch.staffNum} <AccountBox sx={{ ml: 1 }} />
 							</span>
@@ -57,23 +60,22 @@ const BranchComponent = ({ branch, indent }) => {
 	)
 }
 
+// Универсальный компонент для отображения узла (либо ветвь, либо лист)
 const NodeComponent = ({ node, indent = 0 }) => (
 	<div>
-		{node.currentValue.map((item, index) =>
-			item.projectName ? (
-				<LeafComponent leaf={item} key={index} indent={indent} />
-			) : (
-				<BranchComponent branch={item} key={index} indent={indent} />
-			)
+		{node.children && node.children.length > 0 ? (
+			<BranchComponent branch={node} indent={indent} />
+		) : (
+			<LeafComponent leaf={node} indent={indent} />
 		)}
-		{node.next && <NodeComponent node={node.next} indent={indent} />}
 	</div>
 )
 
+// Главный компонент для отображения иерархии проектов
 export const ProjectComponent = ({ project }) => (
 	<Box>
 		<List>
-			{project?.map((node, index) => (
+			{(Array.isArray(project) ? project : []).map((node, index) => (
 				<NodeComponent node={node} key={index} />
 			))}
 		</List>
