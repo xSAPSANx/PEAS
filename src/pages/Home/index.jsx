@@ -8,15 +8,15 @@ import './ui/Home.scss'
 
 export const Home = () => {
 	const dispatch = useDispatch()
-	const { projectsOld } = useSelector(state => state.projects)
+	const { projectsOld, projectsUpdate } = useSelector(state => state.projects)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
-	}, [])
+	}, [dispatch, projectsUpdate])
 	return (
 		<div className='blockProjects'>
-			<ProjectComponent project={projectsOld.items} />
 			<ProjectManager />
+			<ProjectComponent project={projectsOld.items} />
 		</div>
 	)
 }

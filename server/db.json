@@ -3,149 +3,206 @@
     {
       "FullName": "Смирнов Петр Александрович",
       "Grade": "Senior",
-      "ProjectName": "Мегафон"
+      "ProjectName": "test1",
+      "id": "4dd7"
     },
     {
       "FullName": "Кузнецова Ольга Михайловна",
       "Grade": "Middle",
-      "ProjectName": "Сбербанк"
+      "ProjectName": "test1",
+      "id": "a984"
     },
     {
       "FullName": "Воробьев Алексей Сергеевич",
       "Grade": "Junior",
-      "ProjectName": "Газпром"
+      "ProjectName": "test1",
+      "id": "04e3"
     },
     {
       "FullName": "Николаева Анна Дмитриевна",
       "Grade": "Middle",
-      "ProjectName": "ВТБ"
+      "ProjectName": "test 2",
+      "id": "eba1"
     },
     {
       "FullName": "Павлов Дмитрий Олегович",
       "Grade": "Senior",
-      "ProjectName": "Роснефть"
+      "ProjectName": "test1",
+      "id": "42ca"
     },
     {
       "FullName": "Соколова Ирина Владимировна",
       "Grade": "Middle",
-      "ProjectName": "Тинькофф"
+      "ProjectName": "7",
+      "id": "f5f7"
     },
     {
       "FullName": "Попов Андрей Игоревич",
       "Grade": "Junior",
-      "ProjectName": "Mail.ru"
+      "ProjectName": "test1",
+      "id": "fe67"
     },
     {
       "FullName": "Сергеев Максим Викторович",
       "Grade": "Senior",
-      "ProjectName": "Яндекс"
+      "ProjectName": "test1",
+      "id": "9ad5"
     },
     {
       "FullName": "Петрова Наталья Константиновна",
       "Grade": "Junior",
-      "ProjectName": "Лаборатория Касперского"
+      "ProjectName": "test1",
+      "id": "748b"
     },
     {
       "FullName": "Козлов Илья Григорьевич",
       "Grade": "Middle",
-      "ProjectName": "СТЦ"
+      "ProjectName": "test1",
+      "id": "6a14"
     },
     {
       "FullName": "Новиков Владимир Дмитриевич",
       "Grade": "Senior",
-      "ProjectName": "Сбербанк"
+      "ProjectName": "test1",
+      "id": "8703"
     },
     {
       "FullName": "Сидорова Елена Николаевна",
       "Grade": "Middle",
-      "ProjectName": "Мегафон"
+      "ProjectName": "test1",
+      "id": "4c97"
     },
     {
       "FullName": "Иванов Иван Иванович",
       "Grade": "Senior",
-      "ProjectName": "Газпром"
+      "ProjectName": "test1",
+      "id": "42e2"
     },
     {
       "FullName": "Федоров Павел Сергеевич",
       "Grade": "Junior",
-      "ProjectName": "Mail.ru"
+      "ProjectName": "test1",
+      "id": "146c"
     },
     {
       "FullName": "Григорьева Татьяна Викторовна",
       "Grade": "Middle",
-      "ProjectName": "Тинькофф"
+      "ProjectName": "test1",
+      "id": "4cbc"
     },
     {
       "FullName": "Пономарев Артем Алексеевич",
       "Grade": "Junior",
-      "ProjectName": "СТЦ"
+      "ProjectName": "test1",
+      "id": "4874"
     },
     {
       "FullName": "Морозова Наталья Олеговна",
       "Grade": "Senior",
-      "ProjectName": "ВТБ"
+      "ProjectName": "11",
+      "id": "0a12"
     },
     {
       "FullName": "Романов Михаил Михайлович",
       "Grade": "Middle",
-      "ProjectName": "Лаборатория Касперского"
+      "ProjectName": "test1",
+      "id": "7d19"
     },
     {
       "FullName": "Гаврилова Ольга Андреевна",
       "Grade": "Senior",
-      "ProjectName": "Роснефть"
+      "ProjectName": "глисты",
+      "id": "a854"
     },
     {
       "FullName": "Семенов Евгений Петрович",
       "Grade": "Junior",
-      "ProjectName": "Сбербанк"
+      "ProjectName": "test1",
+      "id": "5ab1"
+    },
+    {
+      "id": "xpicvy3id",
+      "FullName": "Рогозина Марина Александровна",
+      "Grade": "Senior",
+      "ProjectName": "марина"
+    },
+    {
+      "id": "ikttxl70r",
+      "FullName": "234234",
+      "Grade": "Junior",
+      "ProjectName": "test 2"
+    },
+    {
+      "id": "lt2fomvat",
+      "FullName": "Robert",
+      "Grade": "Junior",
+      "ProjectName": "марина",
+      "requestId": "K_HCutE3t8lDEtiHcMgMa",
+      "signal": {}
+    },
+    {
+      "id": "judqnah8m",
+      "FullName": "Лукьянов Иван Михайлович",
+      "Grade": "Junior",
+      "ProjectName": "verstka"
     }
   ],
   "projects": [
     {
       "id": "94a3",
       "projectName": "test1",
-      "staffNum": "1",
+      "maxStaffNum": "10",
+      "staff": [],
       "children": [
         {
           "projectName": "2",
-          "staffNum": "2",
+          "maxStaffNum": "2",
+          "staff": [],
           "children": [
             {
               "projectName": "3",
-              "staffNum": "3",
+              "maxStaffNum": "3",
+              "staff": [],
               "children": [
                 {
                   "projectName": "4",
-                  "staffNum": "4",
+                  "maxStaffNum": "4",
+                  "staff": [],
                   "children": [
                     {
                       "projectName": "5",
-                      "staffNum": "5",
+                      "maxStaffNum": "5",
+                      "staff": [],
                       "children": [
                         {
                           "projectName": "6",
-                          "staffNum": "6",
+                          "maxStaffNum": "6",
+                          "staff": [],
                           "children": [
                             {
                               "projectName": "7",
-                              "staffNum": "7",
+                              "maxStaffNum": "7",
+                              "staff": [],
                               "children": [
                                 {
                                   "projectName": "8",
-                                  "staffNum": "8",
+                                  "maxStaffNum": "8",
+                                  "staff": [],
                                   "children": [
                                     {
                                       "projectName": "9",
-                                      "staffNum": "9",
+                                      "maxStaffNum": "9",
+                                      "staff": [],
                                       "children": [
                                         {
                                           "projectName": "10",
-                                          "staffNum": "10",
+                                          "maxStaffNum": "10",
+                                          "staff": [],
                                           "children": [
                                             {
                                               "projectName": "11",
-                                              "staffNum": "11",
+                                              "maxStaffNum": "11",
+                                              "staff": [],
                                               "children": []
                                             }
                                           ]
@@ -169,50 +226,107 @@
       ]
     },
     {
-      "id": "6df1",
-      "projectName": "лул",
-      "staffNum": "4",
-      "children": []
-    },
-    {
-      "id": "99d9",
-      "projectName": "рф",
-      "staffNum": "147",
-      "children": []
-    },
-    {
-      "id": "77f9",
-      "projectName": "haha",
-      "staffNum": "5",
+      "id": "6eac",
+      "projectName": "test 2",
+      "maxStaffNum": "22",
+      "staff": [
+        "form"
+      ],
       "children": [
         {
-          "projectName": "nhg",
-          "staffNum": "1",
+          "projectName": "test3",
+          "maxStaffNum": "11",
+          "staff": [],
           "children": []
+        },
+        {
+          "projectName": "12",
+          "maxStaffNum": "21",
+          "staff": [],
+          "children": []
+        },
+        {
+          "projectName": "21",
+          "maxStaffNum": "21",
+          "staff": [],
+          "children": [
+            {
+              "projectName": "44",
+              "maxStaffNum": "34",
+              "staff": [],
+              "children": []
+            }
+          ]
         }
       ]
     },
     {
-      "id": "d6f5",
-      "projectName": "erhg",
-      "staffNum": "123",
+      "id": "c8ba",
+      "projectName": "марина",
+      "maxStaffNum": "1",
+      "staff": [
+        {
+          "id": "lt2fomvat",
+          "FullName": "Robert",
+          "Grade": "Junior",
+          "ProjectName": "марина",
+          "requestId": "K_HCutE3t8lDEtiHcMgMa",
+          "signal": {}
+        }
+      ],
       "children": [
         {
-          "projectName": "tttt",
-          "staffNum": "2",
+          "projectName": "мира",
+          "maxStaffNum": "1",
+          "staff": [],
           "children": []
+        },
+        {
+          "projectName": "марс",
+          "maxStaffNum": "1",
+          "staff": [],
+          "children": [
+            {
+              "projectName": "глисты",
+              "maxStaffNum": "1",
+              "staff": [],
+              "children": []
+            }
+          ]
         }
       ]
     },
     {
-      "id": "8a7c",
-      "projectName": "ооооо",
-      "staffNum": "222",
+      "id": "94f9",
+      "projectName": "telegram",
+      "maxStaffNum": 50,
+      "staff": [],
       "children": [
         {
-          "projectName": "ллллллл",
-          "staffNum": "45",
+          "projectName": "telegram dekstop",
+          "maxStaffNum": 25,
+          "staff": [],
           "children": []
+        },
+        {
+          "projectName": "telegram mobile",
+          "maxStaffNum": 25,
+          "staff": [],
+          "children": [
+            {
+              "projectName": "frontend",
+              "maxStaffNum": 10,
+              "staff": [],
+              "children": [
+                {
+                  "projectName": "verstka",
+                  "maxStaffNum": 5,
+                  "staff": [],
+                  "children": []
+                }
+              ]
+            }
+          ]
         }
       ]
     }

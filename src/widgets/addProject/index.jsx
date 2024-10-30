@@ -11,11 +11,11 @@ import {
 	MenuItem,
 	Select,
 	FormControl,
-	InputLabel,
 } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { postProjects } from '../../pages/Home/model/projectSlice'
+import { postProjects, increment } from '../../pages/Home/model/projectSlice'
 
+// Recursive function to render nested projects as select options
 const renderProjects = (projects, parentIndex = '') => {
 	return projects.flatMap((project, index) => {
 		const currentValue = `${parentIndex}${index}`
@@ -35,16 +35,16 @@ const renderProjects = (projects, parentIndex = '') => {
 
 const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 	const [projectName, setProjectName] = useState('')
-	const [staffNum, setStaffNum] = useState('')
+	const [maxStaffNum, setMaxStaffNum] = useState('')
 	const [parentProject, setParentProject] = useState('')
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		if (projectName && staffNum) {
-			const newProject = { projectName, staffNum, children: [] }
+		if (projectName && maxStaffNum) {
+			const newProject = { projectName, maxStaffNum: parseInt(maxStaffNum, 10), staff: [], children: [] }
 			onCreate(newProject, parentProject)
 			setProjectName('')
-			setStaffNum('')
+			setMaxStaffNum('')
 			setParentProject('')
 		}
 	}
@@ -66,16 +66,15 @@ const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 				/>
 				<TextField
 					margin='dense'
-					label='Количество сотрудников'
+					label='Максимальное количество сотрудников'
 					type='number'
 					fullWidth
 					variant='outlined'
-					value={staffNum}
-					onChange={e => setStaffNum(e.target.value)}
+					value={maxStaffNum}
+					onChange={e => setMaxStaffNum(e.target.value)}
 					required
 				/>
 				<FormControl fullWidth margin='dense'>
-					<InputLabel id='parent-project-label'>Родительский проект</InputLabel>
 					<Select
 						labelId='parent-project-label'
 						value={parentProject}
@@ -83,7 +82,7 @@ const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 						displayEmpty
 					>
 						<MenuItem value=''>
-							<em>Нет</em>
+							<em>Нету родительского проекта</em>
 						</MenuItem>
 						{renderProjects(projects)}
 					</Select>
@@ -121,10 +120,12 @@ const ProjectManager = () => {
 
 	const handleCreate = (newProject, parentName) => {
 		if (!parentName) {
+			// If no parent project is selected, add as a new top-level project
 			setProjects(prevProjects => [...prevProjects, newProject])
 			return
 		}
 
+		// Deep clone to avoid state mutation issues
 		const updatedProjects = JSON.parse(JSON.stringify(projects))
 		const projectAdded = findAndAddChild(updatedProjects, parentName, newProject)
 
@@ -142,6 +143,8 @@ const ProjectManager = () => {
 			return
 		} else {
 			dispatch(postProjects(projects[0]))
+			dispatch(increment())
+			setProjects([])
 		}
 	}
 

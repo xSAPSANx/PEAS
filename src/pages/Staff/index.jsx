@@ -1,30 +1,29 @@
-import { AgGridReact } from 'ag-grid-react'
-import '../Staff/lib/ag-grid.css'
-import '../Staff/lib/ag-theme-quartz.css'
-import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
-import { fetchStaff } from './model/staffSlice'
+import { fetchProjects } from '../Home/model/projectSlice'
+import { fetchStaff } from '../../pages/Staff/model/staffSlice'
+import StaffTab from '../../widgets/staffTab'
+import StaffManager from '../../widgets/addStaff'
 
-const StaffTab = () => {
+const Staff = () => {
 	const dispatch = useDispatch()
-	const { staff } = useSelector(state => state.staff)
+	const { projectsOld, projectsUpdate } = useSelector(state => state.projects)
+	const { staff, staffUpdate } = useSelector(state => state.staff)
 
-	const [colDefs, setColDefs] = useState([
-		{ field: 'FullName', width: 300 },
-		{ field: 'Grade' },
-		{ field: 'ProjectName' },
-	])
+	useEffect(() => {
+		dispatch(fetchProjects())
+	}, [dispatch, projectsUpdate])
 
 	useEffect(() => {
 		dispatch(fetchStaff())
-	}, [])
-
+	}, [dispatch, staffUpdate])
 	return (
-		<div className='ag-theme-quartz' style={{ height: 1080 }}>
-			<AgGridReact rowData={staff.items} columnDefs={colDefs} />
+		<div>
+			<StaffManager projects={projectsOld.items} />
+			<StaffTab staff={staff} projects={projectsOld.items} />
 		</div>
 	)
 }
 
-export default StaffTab
+export default Staff
