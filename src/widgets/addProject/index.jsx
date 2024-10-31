@@ -41,7 +41,7 @@ const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 		e.preventDefault()
 		if (projectName && maxStaffNum) {
 			const newProject = {
-				id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`, // Assign a unique string ID
+				id: `${Math.random().toString(5).substring(2, 9)}`, // Assign a unique string ID
 				projectName,
 				maxStaffNum: parseInt(maxStaffNum, 10),
 				staff: [],

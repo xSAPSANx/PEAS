@@ -11,6 +11,7 @@ import {
 	MenuItem,
 	Select,
 	FormControl,
+	Alert,
 } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { postStaff, increment } from '../../pages/Staff/model/staffSlice'
@@ -37,18 +38,58 @@ const flattenProjects = projects => {
 	return flattened
 }
 
-const findProjectByName = (projects, projectName) => {
-	if (!projects) return null
+// Функция для проверки возможности добавления сотрудника в проект
+const canAddStaffToProject = (projects, projectName) => {
 	for (const project of projects) {
 		if (project.projectName === projectName) {
-			return project
+			const currentStaffCount = (project.staff || []).length
+			const maxStaffNum = project.maxStaffNum || Infinity
+			return currentStaffCount < maxStaffNum
 		}
-		if (project.children) {
-			const found = findProjectByName(project.children, projectName)
-			if (found) return found
+
+		if (project.children && project.children.length > 0) {
+			const canAdd = canAddStaffToProject(project.children, projectName)
+			if (canAdd) {
+				return true
+			}
 		}
 	}
-	return null
+	return false
+}
+
+// Обновлённая функция updateProjects, возвращающая изменённый проект и индексный путь
+const updateProjects = (projects, projectName, staffMember, path = []) => {
+	let updatedProject = null
+	let updatedIndex = null
+
+	const updatedProjects = projects.map((project, index) => {
+		let newProject = { ...project }
+		const currentPath = [...path, index]
+
+		// Если название проекта совпадает, обновляем массив staff
+		if (project.projectName === projectName) {
+			const staffIds = (project.staff || []).map(member => member.id)
+			if (!staffIds.includes(staffMember.id)) {
+				newProject.staff = [...(project.staff || []), staffMember]
+			}
+			updatedProject = newProject
+			updatedIndex = currentPath
+		}
+
+		// Рекурсивно обновляем детей
+		if (project.children && project.children.length > 0) {
+			const result = updateProjects(project.children, projectName, staffMember, currentPath)
+			newProject.children = result.updatedProjects
+			if (result.updatedProject) {
+				updatedProject = result.updatedProject
+				updatedIndex = result.updatedIndex
+			}
+		}
+
+		return newProject
+	})
+
+	return { updatedProjects, updatedProject, updatedIndex }
 }
 
 const StaffModal = ({ isOpen, onClose, projects = [], onCreate }) => {
@@ -129,24 +170,41 @@ const StaffModal = ({ isOpen, onClose, projects = [], onCreate }) => {
 
 const StaffManager = ({ projects }) => {
 	const [isModalOpen, setModalOpen] = useState(false)
+	const [errorOpen, setErrorOpen] = useState(false) // Состояние для управления модальным окном ошибки
 	const dispatch = useDispatch()
 
 	const handleCreate = newStaff => {
+		// Проверяем возможность добавления сотрудника в выбранный проект
+		const canAdd = canAddStaffToProject(projects, newStaff.ProjectName)
+
+		if (!canAdd) {
+			// Если лимит достигнут, показываем сообщение об ошибке и выходим
+			setErrorOpen(true)
+			return
+		}
+
+		// Создаем копию проектов, чтобы не мутировать исходные данные
+		let updatedProjects = [...projects]
+
+		// Обновляем проекты, добавляя нового сотрудника и получаем изменённый проект и его индексный путь
+		const { updatedProjects: tempProjects, updatedProject } = updateProjects(
+			updatedProjects,
+			newStaff.ProjectName,
+			newStaff
+		)
+		updatedProjects = tempProjects
+
+		// Отправляем измененный проект на сервер (передаем только измененный проект и его индексный путь)
+		if (updatedProject) {
+			dispatch(patchProjects(updatedProject))
+		}
+
+		// Добавляем сотрудника в список сотрудников
 		dispatch(postStaff(newStaff))
 		dispatch(increment())
-
-		// Находим проект и обновляем его
-		const project = findProjectByName(projects, newStaff.ProjectName)
-		if (project) {
-			const updatedProject = {
-				...project,
-				staff: [...(project.staff || []), newStaff],
-			}
-			dispatch(patchProjects(updatedProject))
-		} else {
-			console.warn('Проект не найден:', newStaff.ProjectName)
-		}
 	}
+
+	const handleErrorClose = () => setErrorOpen(false) // Функция для закрытия окна ошибки
 
 	return (
 		<Box p={2}>
@@ -159,6 +217,19 @@ const StaffManager = ({ projects }) => {
 				projects={projects}
 				onCreate={handleCreate}
 			/>
+
+			{/* Модальное окно ошибки */}
+			<Dialog open={errorOpen} onClose={handleErrorClose}>
+				<DialogTitle>Ошибка</DialogTitle>
+				<DialogContent>
+					<Alert severity='error'>В проекте достигнут лимит сотрудников</Alert>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleErrorClose} color='primary'>
+						Ок
+					</Button>
+				</DialogActions>
+			</Dialog>
 		</Box>
 	)
 }

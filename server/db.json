@@ -1,212 +1,95 @@
 {
   "staff": [
     {
-      "FullName": "Смирнов Петр Александрович",
-      "Grade": "Senior",
-      "ProjectName": "test1",
-      "id": "4dd7"
+      "id": "045h84hl3",
+      "FullName": "Anton",
+      "Grade": "Junior",
+      "ProjectName": "test"
     },
     {
-      "FullName": "Кузнецова Ольга Михайловна",
+      "id": "lsmfmphq7",
+      "FullName": "Polina",
       "Grade": "Middle",
-      "ProjectName": "test1",
-      "id": "a984"
+      "ProjectName": "Telegtam"
     },
     {
-      "FullName": "Воробьев Алексей Сергеевич",
-      "Grade": "Junior",
-      "ProjectName": "test1",
-      "id": "04e3"
-    },
-    {
-      "FullName": "Николаева Анна Дмитриевна",
-      "Grade": "Middle",
-      "ProjectName": "test 2",
-      "id": "eba1"
-    },
-    {
-      "FullName": "Павлов Дмитрий Олегович",
-      "Grade": "Senior",
-      "ProjectName": "test1",
-      "id": "42ca"
-    },
-    {
-      "FullName": "Соколова Ирина Владимировна",
-      "Grade": "Middle",
-      "ProjectName": "7",
-      "id": "f5f7"
-    },
-    {
-      "FullName": "Попов Андрей Игоревич",
-      "Grade": "Junior",
-      "ProjectName": "test1",
-      "id": "fe67"
-    },
-    {
-      "FullName": "Сергеев Максим Викторович",
-      "Grade": "Senior",
-      "ProjectName": "test1",
-      "id": "9ad5"
-    },
-    {
-      "FullName": "Петрова Наталья Константиновна",
-      "Grade": "Junior",
-      "ProjectName": "test1",
-      "id": "748b"
-    },
-    {
-      "FullName": "Козлов Илья Григорьевич",
-      "Grade": "Middle",
-      "ProjectName": "test1",
-      "id": "6a14"
-    },
-    {
-      "FullName": "Новиков Владимир Дмитриевич",
-      "Grade": "Senior",
-      "ProjectName": "test1",
-      "id": "8703"
-    },
-    {
-      "FullName": "Сидорова Елена Николаевна",
-      "Grade": "Middle",
-      "ProjectName": "test1",
-      "id": "4c97"
-    },
-    {
-      "FullName": "Иванов Иван Иванович",
-      "Grade": "Senior",
-      "ProjectName": "test1",
-      "id": "42e2"
-    },
-    {
-      "FullName": "Федоров Павел Сергеевич",
-      "Grade": "Junior",
-      "ProjectName": "test1",
-      "id": "146c"
-    },
-    {
-      "FullName": "Григорьева Татьяна Викторовна",
-      "Grade": "Middle",
-      "ProjectName": "test1",
-      "id": "4cbc"
-    },
-    {
-      "FullName": "Пономарев Артем Алексеевич",
-      "Grade": "Junior",
-      "ProjectName": "test1",
-      "id": "4874"
-    },
-    {
-      "FullName": "Морозова Наталья Олеговна",
-      "Grade": "Senior",
-      "ProjectName": "11",
-      "id": "0a12"
-    },
-    {
-      "FullName": "Романов Михаил Михайлович",
-      "Grade": "Middle",
-      "ProjectName": "test1",
-      "id": "7d19"
-    },
-    {
-      "FullName": "Гаврилова Ольга Андреевна",
-      "Grade": "Senior",
-      "ProjectName": "глисты",
-      "id": "a854"
-    },
-    {
-      "FullName": "Семенов Евгений Петрович",
-      "Grade": "Junior",
-      "ProjectName": "test1",
-      "id": "5ab1"
-    },
-    {
-      "id": "xpicvy3id",
-      "FullName": "Рогозина Марина Александровна",
-      "Grade": "Senior",
-      "ProjectName": "марина"
-    },
-    {
-      "id": "ikttxl70r",
-      "FullName": "234234",
-      "Grade": "Junior",
-      "ProjectName": "test 2"
-    },
-    {
-      "id": "lt2fomvat",
-      "FullName": "Robert",
-      "Grade": "Junior",
-      "ProjectName": "марина",
-      "requestId": "K_HCutE3t8lDEtiHcMgMa",
-      "signal": {}
-    },
-    {
-      "id": "judqnah8m",
-      "FullName": "Лукьянов Иван Михайлович",
-      "Grade": "Junior",
-      "ProjectName": "verstka"
-    },
-    {
-      "id": "erh9gn1yr",
-      "FullName": "Силач Качалкин Штангович",
-      "Grade": "Senior",
-      "ProjectName": "test1"
-    },
-    {
-      "id": "oh8q12aeq",
+      "id": "h2yivr7yi",
       "FullName": "qqqq",
       "Grade": "Junior",
-      "ProjectName": "test3"
+      "ProjectName": "Frontend "
     },
     {
-      "id": "z255wwbl5",
-      "FullName": "кккк",
-      "Grade": "Junior",
-      "ProjectName": "test1"
+      "id": "fxd7nnl82",
+      "FullName": "tttt",
+      "Grade": "Middle",
+      "ProjectName": "Frontend "
     }
   ],
   "projects": [
     {
-      "id": "cy4g",
-      "projectName": "test1",
-      "maxStaffNum": 15,
+      "id": "1204123",
+      "projectName": "Telegtam",
+      "maxStaffNum": 50,
       "staff": [
         {
-          "FullName": "Кузнецова Ольга Михайловна",
+          "FullName": "Polina",
           "Grade": "Middle",
-          "ProjectName": "test1",
-          "id": "a984"
-        },
-        {
-          "FullName": "Смирнов Петр Александрович",
-          "Grade": "Senior",
-          "ProjectName": "test1",
-          "id": "4dd7"
-        },
-        {
-          "id": "z255wwbl5",
-          "FullName": "кккк",
-          "Grade": "Junior",
-          "ProjectName": "test1"
+          "ProjectName": "Telegtam",
+          "id": "lsmfmphq7"
         }
       ],
       "children": [
         {
-          "id": "7zew",
-          "projectName": "test2",
-          "maxStaffNum": 4,
+          "id": "0101434",
+          "projectName": "dekstop",
+          "maxStaffNum": 25,
           "staff": [],
           "children": [
             {
-              "id": "1eyv",
-              "projectName": "test3",
-              "maxStaffNum": 12,
-              "staff": [],
+              "id": "4124131",
+              "projectName": "Frontend ",
+              "maxStaffNum": 5,
+              "staff": [
+                {
+                  "id": "fxd7nnl82",
+                  "FullName": "tttt",
+                  "Grade": "Middle",
+                  "ProjectName": "Frontend "
+                }
+              ],
               "children": []
             }
           ]
+        },
+        {
+          "id": "2403210",
+          "projectName": "mobile",
+          "maxStaffNum": 25,
+          "staff": [],
+          "children": []
+        },
+        {
+          "id": "4341323",
+          "projectName": "Backend",
+          "maxStaffNum": 5,
+          "staff": [],
+          "children": []
         }
       ]
+    },
+    {
+      "id": "2204224",
+      "projectName": "test",
+      "maxStaffNum": 1,
+      "staff": [
+        {
+          "id": "045h84hl3",
+          "FullName": "Anton",
+          "Grade": "Junior",
+          "ProjectName": "test"
+        }
+      ],
+      "children": []
     }
   ]
 }

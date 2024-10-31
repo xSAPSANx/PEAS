@@ -12,6 +12,7 @@ import {
 	Button,
 	Select,
 	MenuItem,
+	Alert,
 } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -35,22 +36,67 @@ const flattenProjects = projects => {
 	return flattened
 }
 
-const findProjectByName = (projects, projectName) => {
+// Функция для проверки возможности добавления сотрудника в проект
+const canAddStaffToProject = (projects, projectName) => {
 	for (const project of projects) {
 		if (project.projectName === projectName) {
-			return project
+			const currentStaffCount = (project.staff || []).length
+			const maxStaffNum = project.maxStaffNum || Infinity
+			return currentStaffCount < maxStaffNum
 		}
-		if (project.children) {
-			const found = findProjectByName(project.children, projectName)
-			if (found) return found
+
+		if (project.children && project.children.length > 0) {
+			const canAdd = canAddStaffToProject(project.children, projectName)
+			if (canAdd) {
+				return true
+			}
 		}
 	}
-	return null
+	return false
+}
+
+// Обновленная функция updateProjects
+const updateProjects = (projects, projectName, staffMember, action, path = []) => {
+	let updatedProject = null
+
+	const updatedProjects = projects.map(project => {
+		let newProject = { ...project }
+
+		// Проверяем, совпадает ли имя проекта
+		if (project.projectName === projectName) {
+			if (action === 'add') {
+				const staffIds = (project.staff || []).map(member => member.id)
+				if (!staffIds.includes(staffMember.id)) {
+					newProject.staff = [...(project.staff || []), staffMember]
+				}
+			} else if (action === 'remove') {
+				newProject.staff = (project.staff || []).filter(member => member.id !== staffMember.id)
+			} else if (action === 'update') {
+				// Обновляем данные сотрудника в массиве staff проекта
+				newProject.staff = (project.staff || []).map(member => (member.id === staffMember.id ? staffMember : member))
+			}
+			updatedProject = newProject
+		}
+
+		// Рекурсивно обновляем детей, если они есть
+		if (project.children && project.children.length > 0) {
+			const result = updateProjects(project.children, projectName, staffMember, action, path)
+			newProject.children = result.updatedProjects
+			if (result.updatedProject) {
+				updatedProject = newProject
+			}
+		}
+
+		return newProject
+	})
+
+	return { updatedProjects, updatedProject }
 }
 
 const StaffTab = ({ staff, projects }) => {
 	const dispatch = useDispatch()
 	const [open, setOpen] = useState(false)
+	const [errorOpen, setErrorOpen] = useState(false) // Состояние для управления модальным окном ошибки
 	const [editData, setEditData] = useState({ FullName: '', Grade: '', ProjectName: '', id: '' })
 	const [originalProjectName, setOriginalProjectName] = useState('')
 
@@ -61,35 +107,88 @@ const StaffTab = ({ staff, projects }) => {
 	}
 
 	const handleClose = () => setOpen(false)
+	const handleErrorClose = () => setErrorOpen(false) // Функция для закрытия окна ошибки
 
 	const handleSave = () => {
+		let updatedProjects = [...projects] // Копируем массив проектов
+
+		// Проверяем возможность добавления сотрудника в новый проект
 		if (editData.ProjectName !== originalProjectName) {
+			const canAdd = canAddStaffToProject(projects, editData.ProjectName)
+
+			if (!canAdd) {
+				// Если лимит достигнут, показываем сообщение об ошибке и выходим
+				setErrorOpen(true)
+				return
+			}
+
 			// Удаляем сотрудника из старого проекта
-			const oldProject = findProjectByName(projects, originalProjectName)
-			if (oldProject) {
-				const updatedOldProject = {
-					id: oldProject.id,
-					...oldProject,
-					staff: oldProject.staff.filter(member => member.id !== editData.id),
-				}
-				dispatch(patchProjects(updatedOldProject))
+			const { updatedProjects: tempProjects, updatedProject: removedProject } = updateProjects(
+				updatedProjects,
+				originalProjectName,
+				editData,
+				'remove'
+			)
+			updatedProjects = tempProjects
+
+			// Отправляем измененный старый проект на сервер
+			if (removedProject) {
+				dispatch(patchProjects(removedProject))
 			}
 
 			// Добавляем сотрудника в новый проект
-			const newProject = findProjectByName(projects, editData.ProjectName)
-			if (newProject) {
-				const updatedNewProject = {
-					id: newProject.id,
-					...newProject,
-					staff: [...(newProject.staff || []), editData],
-				}
-				dispatch(patchProjects(updatedNewProject))
+			const { updatedProjects: finalProjects, updatedProject: addedProject } = updateProjects(
+				updatedProjects,
+				editData.ProjectName,
+				editData,
+				'add'
+			)
+			updatedProjects = finalProjects
+
+			// Отправляем измененный новый проект на сервер
+			if (addedProject) {
+				dispatch(patchProjects(addedProject))
+			}
+		} else {
+			// Если проект не изменился, просто обновляем данные сотрудника
+			const { updatedProjects: finalProjects, updatedProject } = updateProjects(
+				updatedProjects,
+				editData.ProjectName,
+				editData,
+				'update'
+			)
+			updatedProjects = finalProjects
+
+			// Отправляем измененный проект на сервер
+			if (updatedProject) {
+				dispatch(patchProjects(updatedProject))
 			}
 		}
 
 		// Обновляем данные сотрудника
 		dispatch(patchStaff(editData))
+
 		handleClose()
+	}
+
+	const handleDelete = data => {
+		// Удаляем сотрудника из списка сотрудников
+		dispatch(deleteStaff(data.id))
+
+		// Обновляем проекты, удаляя сотрудника из проекта или подпроекта
+		let updatedProjects = [...projects]
+		const { updatedProjects: finalProjects, updatedProject } = updateProjects(
+			updatedProjects,
+			data.ProjectName,
+			data,
+			'remove'
+		)
+		updatedProjects = finalProjects
+
+		// Отправляем измененный проект на сервер
+		if (updatedProject) {
+			dispatch(patchProjects(updatedProject))
+		}
 	}
 
 	const handleChange = e => {
@@ -104,7 +203,7 @@ const StaffTab = ({ staff, projects }) => {
 			<IconButton onClick={() => handleOpen(params.data)}>
 				<EditIcon sx={{ fontSize: 16 }} />
 			</IconButton>
-			<IconButton onClick={() => dispatch(deleteStaff(params.data.id))} sx={{ marginLeft: 3 }}>
+			<IconButton onClick={() => handleDelete(params.data)} sx={{ marginLeft: 3 }}>
 				<DeleteIcon sx={{ fontSize: 16, color: '#DC143C' }} />
 			</IconButton>
 		</div>
@@ -128,12 +227,7 @@ const StaffTab = ({ staff, projects }) => {
 	return (
 		<>
 			<div className='ag-theme-quartz' style={{ height: 800 }}>
-				<AgGridReact
-					rowData={rowData}
-					columnDefs={colDefs}
-					paginationPageSize={10}
-					paginationPageSizeSelector={[10, 20]}
-				/>
+				<AgGridReact rowData={rowData} columnDefs={colDefs} />
 			</div>
 
 			<Dialog open={open} onClose={handleClose}>
@@ -184,6 +278,19 @@ const StaffTab = ({ staff, projects }) => {
 					</Button>
 					<Button onClick={handleSave} color='primary'>
 						Сохранить
+					</Button>
+				</DialogActions>
+			</Dialog>
+
+			{/* Модальное окно ошибки */}
+			<Dialog open={errorOpen} onClose={handleErrorClose}>
+				<DialogTitle>Ошибка</DialogTitle>
+				<DialogContent>
+					<Alert severity='error'>В проекте достигнут лимит сотрудников</Alert>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleErrorClose} color='primary'>
+						Ок
 					</Button>
 				</DialogActions>
 			</Dialog>

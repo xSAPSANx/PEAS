@@ -29,6 +29,9 @@ const initialState = {
 	projectsUpdate: {
 		value: 0,
 	},
+	ProjectHidden: {
+		value: false,
+	},
 }
 
 const projectSlice = createSlice({
@@ -37,6 +40,9 @@ const projectSlice = createSlice({
 	reducers: {
 		increment(state) {
 			state.projectsUpdate.value++
+		},
+		tabProjectHidden(state, action) {
+			state.ProjectHidden.value = action.payload
 		},
 	},
 	extraReducers: builder => {
@@ -93,6 +99,6 @@ const projectSlice = createSlice({
 	},
 })
 
-export const { increment } = projectSlice.actions
+export const { increment, tabProjectHidden } = projectSlice.actions
 
 export const projectReducer = projectSlice.reducer

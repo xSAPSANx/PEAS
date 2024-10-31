@@ -1,45 +1,66 @@
 /* eslint-disable react/prop-types */
-import { ListItemButton, ListItemText, Collapse, Typography, List, Box, IconButton } from '@mui/material'
+import { useState } from 'react'
+import { ListItemButton, ListItemText, Collapse, Typography, List, Box, IconButton, Button } from '@mui/material'
 import { AccountBox, ArrowDropUp, ArrowDropDown, Delete as DeleteIcon } from '@mui/icons-material'
 import { useDispatch } from 'react-redux'
-import { useState } from 'react'
 
-import { deleteProjects } from '../../pages/Home/model/projectSlice'
+import { deleteProjects, tabProjectHidden } from '../../pages/Home/model/projectSlice' // Импортируем tabProjectHidden
 import './projects.scss'
 
-const LeafComponent = ({ leaf, indent, dispatch }) => (
-	<ListItemButton sx={{ pl: indent, display: 'flex', alignItems: 'center' }}>
-		<ListItemText
-			primary={
-				<Typography className={'typograph'} variant='body1'>
-					{leaf.projectName}
-				</Typography>
-			}
-		/>
-		<Box sx={{ display: 'flex', alignItems: 'center' }}>
-			<span className={'staff-number'}>
-				{leaf.staff.length} / {leaf.maxStaffNum} <AccountBox sx={{ ml: 1 }} />
-			</span>
-			{leaf.id && (
-				<IconButton
-					onClick={event => {
-						event.stopPropagation()
-						dispatch(deleteProjects(leaf.id))
-					}}
-					sx={{ color: '#DC143C', ml: 1 }}
-				>
-					<DeleteIcon />
-				</IconButton>
-			)}
-		</Box>
-	</ListItemButton>
-)
+const LeafComponent = ({ leaf, indent }) => {
+	const dispatch = useDispatch() // Получаем dispatch из React Redux
 
-const BranchComponent = ({ branch, indent, dispatch }) => {
+	const handleOpenModal = () => {
+		dispatch(tabProjectHidden(true)) // <-- dispatch для изменения состояния отображения таблицы на "true"
+	}
+
+	return (
+		<>
+			<ListItemButton sx={{ pl: indent, display: 'flex', alignItems: 'center' }}>
+				<ListItemText
+					primary={
+						<Typography className={'typograph'} variant='body1'>
+							{leaf.projectName}
+						</Typography>
+					}
+				/>
+				<Box sx={{ display: 'flex', alignItems: 'center' }}>
+					<Button
+						onClick={handleOpenModal} // Используем функцию для открытия модального окна и изменения состояния
+						sx={{ textTransform: 'none', padding: 0, minWidth: 'auto' }}
+					>
+						<span className={'staff-number'}>
+							{leaf.staff.length} / {leaf.maxStaffNum} <AccountBox sx={{ ml: 1 }} />
+						</span>
+					</Button>
+					{leaf.id && (
+						<IconButton
+							onClick={event => {
+								event.stopPropagation()
+								dispatch(deleteProjects(leaf.id))
+							}}
+							sx={{ color: '#DC143C', ml: 1 }}
+						>
+							<DeleteIcon />
+						</IconButton>
+					)}
+				</Box>
+			</ListItemButton>
+		</>
+	)
+}
+
+const BranchComponent = ({ branch, indent }) => {
 	const [open, setOpen] = useState(false)
+	const dispatch = useDispatch() // Получаем dispatch из React Redux
 
 	const handleClick = () => {
 		setOpen(!open)
+	}
+
+	const handleOpenModal = event => {
+		event.stopPropagation()
+		dispatch(tabProjectHidden(true)) // <-- dispatch для изменения состояния отображения таблицы на "true"
 	}
 
 	return (
@@ -54,9 +75,14 @@ const BranchComponent = ({ branch, indent, dispatch }) => {
 					}
 				/>
 				<Box sx={{ display: 'flex', alignItems: 'center' }}>
-					<span className={'staff-number'}>
-						{branch.staff.length} / {branch.maxStaffNum} <AccountBox sx={{ ml: 1 }} />
-					</span>
+					<Button
+						onClick={handleOpenModal} // Используем функцию для открытия модального окна и изменения состояния
+						sx={{ textTransform: 'none', padding: 0, minWidth: 'auto' }}
+					>
+						<span className={'staff-number'}>
+							{branch.staff.length} / {branch.maxStaffNum} <AccountBox sx={{ ml: 1 }} />
+						</span>
+					</Button>
 					{branch.id && (
 						<IconButton
 							onClick={event => {
@@ -84,14 +110,12 @@ const BranchComponent = ({ branch, indent, dispatch }) => {
 }
 
 function NodeComponent({ node, indent = 0 }) {
-	const dispatch = useDispatch()
-
 	return (
 		<div>
 			{node.children && node.children.length > 0 ? (
-				<BranchComponent branch={node} indent={indent} dispatch={dispatch} />
+				<BranchComponent branch={node} indent={indent} />
 			) : (
-				<LeafComponent leaf={node} indent={indent} dispatch={dispatch} />
+				<LeafComponent leaf={node} indent={indent} />
 			)}
 		</div>
 	)
