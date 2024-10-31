@@ -15,7 +15,6 @@ import {
 import { useDispatch } from 'react-redux'
 import { postProjects, increment } from '../../pages/Home/model/projectSlice'
 
-// Recursive function to render nested projects as select options
 const renderProjects = (projects, parentIndex = '') => {
 	return projects.flatMap((project, index) => {
 		const currentValue = `${parentIndex}${index}`
@@ -41,7 +40,13 @@ const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (projectName && maxStaffNum) {
-			const newProject = { projectName, maxStaffNum: parseInt(maxStaffNum, 10), staff: [], children: [] }
+			const newProject = {
+				id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`, // Assign a unique string ID
+				projectName,
+				maxStaffNum: parseInt(maxStaffNum, 10),
+				staff: [],
+				children: [],
+			}
 			onCreate(newProject, parentProject)
 			setProjectName('')
 			setMaxStaffNum('')
@@ -120,7 +125,6 @@ const ProjectManager = () => {
 
 	const handleCreate = (newProject, parentName) => {
 		if (!parentName) {
-			// If no parent project is selected, add as a new top-level project
 			setProjects(prevProjects => [...prevProjects, newProject])
 			return
 		}

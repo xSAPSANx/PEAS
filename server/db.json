@@ -145,186 +145,64 @@
       "FullName": "Лукьянов Иван Михайлович",
       "Grade": "Junior",
       "ProjectName": "verstka"
+    },
+    {
+      "id": "erh9gn1yr",
+      "FullName": "Силач Качалкин Штангович",
+      "Grade": "Senior",
+      "ProjectName": "test1"
+    },
+    {
+      "id": "oh8q12aeq",
+      "FullName": "qqqq",
+      "Grade": "Junior",
+      "ProjectName": "test3"
+    },
+    {
+      "id": "z255wwbl5",
+      "FullName": "кккк",
+      "Grade": "Junior",
+      "ProjectName": "test1"
     }
   ],
   "projects": [
     {
-      "id": "94a3",
+      "id": "cy4g",
       "projectName": "test1",
-      "maxStaffNum": "10",
-      "staff": [],
-      "children": [
-        {
-          "projectName": "2",
-          "maxStaffNum": "2",
-          "staff": [],
-          "children": [
-            {
-              "projectName": "3",
-              "maxStaffNum": "3",
-              "staff": [],
-              "children": [
-                {
-                  "projectName": "4",
-                  "maxStaffNum": "4",
-                  "staff": [],
-                  "children": [
-                    {
-                      "projectName": "5",
-                      "maxStaffNum": "5",
-                      "staff": [],
-                      "children": [
-                        {
-                          "projectName": "6",
-                          "maxStaffNum": "6",
-                          "staff": [],
-                          "children": [
-                            {
-                              "projectName": "7",
-                              "maxStaffNum": "7",
-                              "staff": [],
-                              "children": [
-                                {
-                                  "projectName": "8",
-                                  "maxStaffNum": "8",
-                                  "staff": [],
-                                  "children": [
-                                    {
-                                      "projectName": "9",
-                                      "maxStaffNum": "9",
-                                      "staff": [],
-                                      "children": [
-                                        {
-                                          "projectName": "10",
-                                          "maxStaffNum": "10",
-                                          "staff": [],
-                                          "children": [
-                                            {
-                                              "projectName": "11",
-                                              "maxStaffNum": "11",
-                                              "staff": [],
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "6eac",
-      "projectName": "test 2",
-      "maxStaffNum": "22",
-      "staff": [
-        "form"
-      ],
-      "children": [
-        {
-          "projectName": "test3",
-          "maxStaffNum": "11",
-          "staff": [],
-          "children": []
-        },
-        {
-          "projectName": "12",
-          "maxStaffNum": "21",
-          "staff": [],
-          "children": []
-        },
-        {
-          "projectName": "21",
-          "maxStaffNum": "21",
-          "staff": [],
-          "children": [
-            {
-              "projectName": "44",
-              "maxStaffNum": "34",
-              "staff": [],
-              "children": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "c8ba",
-      "projectName": "марина",
-      "maxStaffNum": "1",
+      "maxStaffNum": 15,
       "staff": [
         {
-          "id": "lt2fomvat",
-          "FullName": "Robert",
+          "FullName": "Кузнецова Ольга Михайловна",
+          "Grade": "Middle",
+          "ProjectName": "test1",
+          "id": "a984"
+        },
+        {
+          "FullName": "Смирнов Петр Александрович",
+          "Grade": "Senior",
+          "ProjectName": "test1",
+          "id": "4dd7"
+        },
+        {
+          "id": "z255wwbl5",
+          "FullName": "кккк",
           "Grade": "Junior",
-          "ProjectName": "марина",
-          "requestId": "K_HCutE3t8lDEtiHcMgMa",
-          "signal": {}
+          "ProjectName": "test1"
         }
       ],
       "children": [
         {
-          "projectName": "мира",
-          "maxStaffNum": "1",
-          "staff": [],
-          "children": []
-        },
-        {
-          "projectName": "марс",
-          "maxStaffNum": "1",
+          "id": "7zew",
+          "projectName": "test2",
+          "maxStaffNum": 4,
           "staff": [],
           "children": [
             {
-              "projectName": "глисты",
-              "maxStaffNum": "1",
+              "id": "1eyv",
+              "projectName": "test3",
+              "maxStaffNum": 12,
               "staff": [],
               "children": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "94f9",
-      "projectName": "telegram",
-      "maxStaffNum": 50,
-      "staff": [],
-      "children": [
-        {
-          "projectName": "telegram dekstop",
-          "maxStaffNum": 25,
-          "staff": [],
-          "children": []
-        },
-        {
-          "projectName": "telegram mobile",
-          "maxStaffNum": 25,
-          "staff": [],
-          "children": [
-            {
-              "projectName": "frontend",
-              "maxStaffNum": 10,
-              "staff": [],
-              "children": [
-                {
-                  "projectName": "verstka",
-                  "maxStaffNum": 5,
-                  "staff": [],
-                  "children": []
-                }
-              ]
             }
           ]
         }

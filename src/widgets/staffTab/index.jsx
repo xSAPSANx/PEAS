@@ -29,12 +29,13 @@ const flattenProjects = projects => {
 			project.children.forEach(child => traverse(child))
 		}
 	}
-	projects.forEach(project => traverse(project))
+	if (Array.isArray(projects)) {
+		projects.forEach(project => traverse(project))
+	}
 	return flattened
 }
 
 const findProjectByName = (projects, projectName) => {
-	console.log(projectName)
 	for (const project of projects) {
 		if (project.projectName === projectName) {
 			return project
@@ -72,7 +73,6 @@ const StaffTab = ({ staff, projects }) => {
 					staff: oldProject.staff.filter(member => member.id !== editData.id),
 				}
 				dispatch(patchProjects(updatedOldProject))
-				//console.log(updatedOldProject, 'это при клике удаляет сотрудника из старого ')
 			}
 
 			// Добавляем сотрудника в новый проект
@@ -84,7 +84,6 @@ const StaffTab = ({ staff, projects }) => {
 					staff: [...(newProject.staff || []), editData],
 				}
 				dispatch(patchProjects(updatedNewProject))
-				//console.log(updatedNewProject, 'добавляет сотрудника в новый проект')
 			}
 		}
 
