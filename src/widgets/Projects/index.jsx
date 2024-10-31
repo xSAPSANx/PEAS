@@ -4,13 +4,15 @@ import { ListItemButton, ListItemText, Collapse, Typography, List, Box, IconButt
 import { AccountBox, ArrowDropUp, ArrowDropDown, Delete as DeleteIcon } from '@mui/icons-material'
 import { useDispatch } from 'react-redux'
 
-import { deleteProjects, tabProjectHidden } from '../../pages/Home/model/projectSlice' // Импортируем tabProjectHidden
+import { deleteProjects, tabProjectHidden, projectClickID } from '../../pages/Home/model/projectSlice' // Импортируем tabProjectHidden
 import './projects.scss'
 
 const LeafComponent = ({ leaf, indent }) => {
 	const dispatch = useDispatch() // Получаем dispatch из React Redux
 
-	const handleOpenModal = () => {
+	const handleOpenModal = (event, id) => {
+		event.stopPropagation()
+		dispatch(projectClickID(id))
 		dispatch(tabProjectHidden(true)) // <-- dispatch для изменения состояния отображения таблицы на "true"
 	}
 
@@ -26,7 +28,7 @@ const LeafComponent = ({ leaf, indent }) => {
 				/>
 				<Box sx={{ display: 'flex', alignItems: 'center' }}>
 					<Button
-						onClick={handleOpenModal} // Используем функцию для открытия модального окна и изменения состояния
+						onClick={event => handleOpenModal(event, leaf.id)} // Используем функцию для открытия модального окна и изменения состояния
 						sx={{ textTransform: 'none', padding: 0, minWidth: 'auto' }}
 					>
 						<span className={'staff-number'}>
@@ -58,8 +60,9 @@ const BranchComponent = ({ branch, indent }) => {
 		setOpen(!open)
 	}
 
-	const handleOpenModal = event => {
+	const handleOpenModal = (event, id) => {
 		event.stopPropagation()
+		dispatch(projectClickID(id))
 		dispatch(tabProjectHidden(true)) // <-- dispatch для изменения состояния отображения таблицы на "true"
 	}
 
@@ -76,7 +79,7 @@ const BranchComponent = ({ branch, indent }) => {
 				/>
 				<Box sx={{ display: 'flex', alignItems: 'center' }}>
 					<Button
-						onClick={handleOpenModal} // Используем функцию для открытия модального окна и изменения состояния
+						onClick={event => handleOpenModal(event, branch.id)} // Используем функцию для открытия модального окна и изменения состояния
 						sx={{ textTransform: 'none', padding: 0, minWidth: 'auto' }}
 					>
 						<span className={'staff-number'}>

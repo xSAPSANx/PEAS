@@ -9,7 +9,7 @@ import './ui/Home.scss'
 
 export const Home = () => {
 	const dispatch = useDispatch()
-	const { projectsOld, projectsUpdate, ProjectHidden } = useSelector(state => state.projects)
+	const { projectsOld, projectsUpdate, ProjectHidden, projectClickID } = useSelector(state => state.projects)
 
 	useEffect(() => {
 		dispatch(fetchProjects())
@@ -21,7 +21,7 @@ export const Home = () => {
 				<ProjectManager />
 				<ProjectComponent project={projectsOld.items} />
 			</div>
-			<div>{ProjectHidden.value && <ProjectTab staff={projectsOld.items} />}</div>
+			<div>{ProjectHidden.value && <ProjectTab projects={projectsOld} lastClick={projectClickID} />}</div>
 		</div>
 	)
 }

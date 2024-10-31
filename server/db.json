@@ -16,13 +16,25 @@
       "id": "h2yivr7yi",
       "FullName": "qqqq",
       "Grade": "Junior",
-      "ProjectName": "Frontend "
+      "ProjectName": "dekstop"
     },
     {
       "id": "fxd7nnl82",
       "FullName": "tttt",
       "Grade": "Middle",
       "ProjectName": "Frontend "
+    },
+    {
+      "id": "jm6ozvomd",
+      "FullName": "Иван",
+      "Grade": "Junior",
+      "ProjectName": "Telegtam"
+    },
+    {
+      "id": "n13mkvr2u",
+      "FullName": "Омез",
+      "Grade": "Middle",
+      "ProjectName": "mobile"
     }
   ],
   "projects": [
@@ -36,6 +48,12 @@
           "Grade": "Middle",
           "ProjectName": "Telegtam",
           "id": "lsmfmphq7"
+        },
+        {
+          "FullName": "Иван",
+          "Grade": "Junior",
+          "ProjectName": "Telegtam",
+          "id": "jm6ozvomd"
         }
       ],
       "children": [
@@ -43,7 +61,14 @@
           "id": "0101434",
           "projectName": "dekstop",
           "maxStaffNum": 25,
-          "staff": [],
+          "staff": [
+            {
+              "id": "h2yivr7yi",
+              "FullName": "qqqq",
+              "Grade": "Junior",
+              "ProjectName": "dekstop"
+            }
+          ],
           "children": [
             {
               "id": "4124131",
@@ -65,7 +90,14 @@
           "id": "2403210",
           "projectName": "mobile",
           "maxStaffNum": 25,
-          "staff": [],
+          "staff": [
+            {
+              "id": "n13mkvr2u",
+              "FullName": "Омез",
+              "Grade": "Middle",
+              "ProjectName": "mobile"
+            }
+          ],
           "children": []
         },
         {

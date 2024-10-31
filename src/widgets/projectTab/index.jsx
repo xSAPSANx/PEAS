@@ -1,35 +1,27 @@
-import { useState } from 'react'
+/* eslint-disable react/prop-types */
+import { useState, useMemo } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import '../staffTab/lib/ag-grid.css'
 import '../staffTab/lib/ag-theme-quartz.css'
 
-export const ProjectTab = staff => {
-	const [rowData, setRowData] = useState([
-		{
-			id: '045h84hl3',
-			FullName: 'Жуков Антон Антонович',
-			Grade: 'Junior',
-			ProjectName: 'test',
-		},
-		{
-			id: 'lsmfmphq7',
-			FullName: 'Polina',
-			Grade: 'Middle',
-			ProjectName: 'Telegtam',
-		},
-		{
-			id: 'h2yivr7yi',
-			FullName: 'qqqq',
-			Grade: 'Junior',
-			ProjectName: 'Frontend ',
-		},
-		{
-			id: 'fxd7nnl82',
-			FullName: 'tttt',
-			Grade: 'Middle',
-			ProjectName: 'Frontend ',
-		},
-	])
+export const ProjectTab = ({ projects, lastClick }) => {
+	// Find the project with the matching ID
+	const selectedProject = useMemo(() => {
+		const findProjectById = (projectList, id) => {
+			console.log(projectList)
+			for (const project of projectList) {
+				if (project.id === id) return project
+				if (project.children) {
+					const found = findProjectById(project.children, id)
+					if (found) return found
+				}
+			}
+			return null
+		}
+		return findProjectById(projects.items, lastClick?.id)
+	}, [projects, lastClick])
+
+	// Set up column definitions
 	const [colDefs] = useState([
 		{ field: 'FullName', headerName: 'ФИО', width: 300 },
 		{ field: 'Grade', width: 100 },
@@ -37,7 +29,8 @@ export const ProjectTab = staff => {
 		{ field: 'id', headerName: 'ID', width: 300, hide: true },
 	])
 
-	//const rowData = useMemo(() => (Array.isArray(staff.items) ? staff.items : []), [staff.items])
+	// Use the staff of the selected project as rowData
+	const rowData = useMemo(() => selectedProject?.staff || [], [selectedProject])
 
 	return (
 		<>
