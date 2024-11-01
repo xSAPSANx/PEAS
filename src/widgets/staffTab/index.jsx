@@ -36,7 +36,6 @@ const flattenProjects = projects => {
 	return flattened
 }
 
-// Функция для проверки возможности добавления сотрудника в проект
 const canAddStaffToProject = (projects, projectName) => {
 	for (const project of projects) {
 		if (project.projectName === projectName) {
@@ -55,14 +54,12 @@ const canAddStaffToProject = (projects, projectName) => {
 	return false
 }
 
-// Обновленная функция updateProjects
-const updateProjects = (projects, projectName, staffMember, action, path = []) => {
+const updateProjects = (projects, projectName, staffMember, action) => {
 	let updatedProject = null
 
 	const updatedProjects = projects.map(project => {
 		let newProject = { ...project }
 
-		// Проверяем, совпадает ли имя проекта
 		if (project.projectName === projectName) {
 			if (action === 'add') {
 				const staffIds = (project.staff || []).map(member => member.id)
@@ -72,18 +69,16 @@ const updateProjects = (projects, projectName, staffMember, action, path = []) =
 			} else if (action === 'remove') {
 				newProject.staff = (project.staff || []).filter(member => member.id !== staffMember.id)
 			} else if (action === 'update') {
-				// Обновляем данные сотрудника в массиве staff проекта
 				newProject.staff = (project.staff || []).map(member => (member.id === staffMember.id ? staffMember : member))
 			}
 			updatedProject = newProject
 		}
 
-		// Рекурсивно обновляем детей, если они есть
 		if (project.children && project.children.length > 0) {
-			const result = updateProjects(project.children, projectName, staffMember, action, path)
+			const result = updateProjects(project.children, projectName, staffMember, action)
 			newProject.children = result.updatedProjects
 			if (result.updatedProject) {
-				updatedProject = newProject
+				updatedProject = { ...newProject }
 			}
 		}
 
@@ -96,7 +91,7 @@ const updateProjects = (projects, projectName, staffMember, action, path = []) =
 const StaffTab = ({ staff, projects }) => {
 	const dispatch = useDispatch()
 	const [open, setOpen] = useState(false)
-	const [errorOpen, setErrorOpen] = useState(false) // Состояние для управления модальным окном ошибки
+	const [errorOpen, setErrorOpen] = useState(false)
 	const [editData, setEditData] = useState({ FullName: '', Grade: '', ProjectName: '', id: '' })
 	const [originalProjectName, setOriginalProjectName] = useState('')
 
@@ -107,22 +102,19 @@ const StaffTab = ({ staff, projects }) => {
 	}
 
 	const handleClose = () => setOpen(false)
-	const handleErrorClose = () => setErrorOpen(false) // Функция для закрытия окна ошибки
+	const handleErrorClose = () => setErrorOpen(false)
 
 	const handleSave = () => {
-		let updatedProjects = [...projects] // Копируем массив проектов
+		let updatedProjects = [...projects]
 
-		// Проверяем возможность добавления сотрудника в новый проект
 		if (editData.ProjectName !== originalProjectName) {
 			const canAdd = canAddStaffToProject(projects, editData.ProjectName)
 
 			if (!canAdd) {
-				// Если лимит достигнут, показываем сообщение об ошибке и выходим
 				setErrorOpen(true)
 				return
 			}
 
-			// Удаляем сотрудника из старого проекта
 			const { updatedProjects: tempProjects, updatedProject: removedProject } = updateProjects(
 				updatedProjects,
 				originalProjectName,
@@ -131,12 +123,10 @@ const StaffTab = ({ staff, projects }) => {
 			)
 			updatedProjects = tempProjects
 
-			// Отправляем измененный старый проект на сервер
 			if (removedProject) {
 				dispatch(patchProjects(removedProject))
 			}
 
-			// Добавляем сотрудника в новый проект
 			const { updatedProjects: finalProjects, updatedProject: addedProject } = updateProjects(
 				updatedProjects,
 				editData.ProjectName,
@@ -145,12 +135,10 @@ const StaffTab = ({ staff, projects }) => {
 			)
 			updatedProjects = finalProjects
 
-			// Отправляем измененный новый проект на сервер
 			if (addedProject) {
 				dispatch(patchProjects(addedProject))
 			}
 		} else {
-			// Если проект не изменился, просто обновляем данные сотрудника
 			const { updatedProjects: finalProjects, updatedProject } = updateProjects(
 				updatedProjects,
 				editData.ProjectName,
@@ -159,23 +147,19 @@ const StaffTab = ({ staff, projects }) => {
 			)
 			updatedProjects = finalProjects
 
-			// Отправляем измененный проект на сервер
 			if (updatedProject) {
 				dispatch(patchProjects(updatedProject))
 			}
 		}
 
-		// Обновляем данные сотрудника
 		dispatch(patchStaff(editData))
 
 		handleClose()
 	}
 
 	const handleDelete = data => {
-		// Удаляем сотрудника из списка сотрудников
 		dispatch(deleteStaff(data.id))
 
-		// Обновляем проекты, удаляя сотрудника из проекта или подпроекта
 		let updatedProjects = [...projects]
 		const { updatedProjects: finalProjects, updatedProject } = updateProjects(
 			updatedProjects,
@@ -185,7 +169,6 @@ const StaffTab = ({ staff, projects }) => {
 		)
 		updatedProjects = finalProjects
 
-		// Отправляем измененный проект на сервер
 		if (updatedProject) {
 			dispatch(patchProjects(updatedProject))
 		}
@@ -282,7 +265,6 @@ const StaffTab = ({ staff, projects }) => {
 				</DialogActions>
 			</Dialog>
 
-			{/* Модальное окно ошибки */}
 			<Dialog open={errorOpen} onClose={handleErrorClose}>
 				<DialogTitle>Ошибка</DialogTitle>
 				<DialogContent>

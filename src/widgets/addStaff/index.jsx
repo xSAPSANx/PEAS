@@ -32,13 +32,12 @@ const flattenProjects = projects => {
 	} else if (projects && typeof projects === 'object') {
 		traverse(projects)
 	} else {
-		console.warn('Projects is not an array or object:', projects)
+		console.warn('Projects не является массивом:', projects)
 		return []
 	}
 	return flattened
 }
 
-// Функция для проверки возможности добавления сотрудника в проект
 const canAddStaffToProject = (projects, projectName) => {
 	for (const project of projects) {
 		if (project.projectName === projectName) {
@@ -57,39 +56,40 @@ const canAddStaffToProject = (projects, projectName) => {
 	return false
 }
 
-// Обновлённая функция updateProjects, возвращающая изменённый проект и индексный путь
-const updateProjects = (projects, projectName, staffMember, path = []) => {
-	let updatedProject = null
-	let updatedIndex = null
-
-	const updatedProjects = projects.map((project, index) => {
-		let newProject = { ...project }
-		const currentPath = [...path, index]
-
-		// Если название проекта совпадает, обновляем массив staff
-		if (project.projectName === projectName) {
-			const staffIds = (project.staff || []).map(member => member.id)
-			if (!staffIds.includes(staffMember.id)) {
-				newProject.staff = [...(project.staff || []), staffMember]
+const updateProject = (project, projectName, staffMember) => {
+	if (project.projectName === projectName) {
+		const staffIds = (project.staff || []).map(member => member.id)
+		if (!staffIds.includes(staffMember.id)) {
+			return {
+				...project,
+				staff: [...(project.staff || []), staffMember],
 			}
-			updatedProject = newProject
-			updatedIndex = currentPath
+		} else {
+			return project
+		}
+	} else if (project.children && project.children.length > 0) {
+		const updatedChildren = []
+		let isUpdated = false
+
+		for (const child of project.children) {
+			const updatedChild = updateProject(child, projectName, staffMember)
+			if (updatedChild !== child) {
+				isUpdated = true
+			}
+			updatedChildren.push(updatedChild)
 		}
 
-		// Рекурсивно обновляем детей
-		if (project.children && project.children.length > 0) {
-			const result = updateProjects(project.children, projectName, staffMember, currentPath)
-			newProject.children = result.updatedProjects
-			if (result.updatedProject) {
-				updatedProject = result.updatedProject
-				updatedIndex = result.updatedIndex
+		if (isUpdated) {
+			return {
+				...project,
+				children: updatedChildren,
 			}
+		} else {
+			return project
 		}
-
-		return newProject
-	})
-
-	return { updatedProjects, updatedProject, updatedIndex }
+	} else {
+		return project
+	}
 }
 
 const StaffModal = ({ isOpen, onClose, projects = [], onCreate }) => {
@@ -170,41 +170,36 @@ const StaffModal = ({ isOpen, onClose, projects = [], onCreate }) => {
 
 const StaffManager = ({ projects }) => {
 	const [isModalOpen, setModalOpen] = useState(false)
-	const [errorOpen, setErrorOpen] = useState(false) // Состояние для управления модальным окном ошибки
+	const [errorOpen, setErrorOpen] = useState(false)
 	const dispatch = useDispatch()
 
 	const handleCreate = newStaff => {
-		// Проверяем возможность добавления сотрудника в выбранный проект
 		const canAdd = canAddStaffToProject(projects, newStaff.ProjectName)
 
 		if (!canAdd) {
-			// Если лимит достигнут, показываем сообщение об ошибке и выходим
 			setErrorOpen(true)
 			return
 		}
 
-		// Создаем копию проектов, чтобы не мутировать исходные данные
-		let updatedProjects = [...projects]
+		let updatedRootProject = null
 
-		// Обновляем проекты, добавляя нового сотрудника и получаем изменённый проект и его индексный путь
-		const { updatedProjects: tempProjects, updatedProject } = updateProjects(
-			updatedProjects,
-			newStaff.ProjectName,
-			newStaff
-		)
-		updatedProjects = tempProjects
-
-		// Отправляем измененный проект на сервер (передаем только измененный проект и его индексный путь)
-		if (updatedProject) {
-			dispatch(patchProjects(updatedProject))
+		for (const project of projects) {
+			const updatedProject = updateProject(project, newStaff.ProjectName, newStaff)
+			if (updatedProject !== project) {
+				updatedRootProject = updatedProject
+				break
+			}
 		}
 
-		// Добавляем сотрудника в список сотрудников
+		if (updatedRootProject) {
+			dispatch(patchProjects(updatedRootProject))
+		}
+
 		dispatch(postStaff(newStaff))
 		dispatch(increment())
 	}
 
-	const handleErrorClose = () => setErrorOpen(false) // Функция для закрытия окна ошибки
+	const handleErrorClose = () => setErrorOpen(false)
 
 	return (
 		<Box p={2}>
@@ -218,7 +213,6 @@ const StaffManager = ({ projects }) => {
 				onCreate={handleCreate}
 			/>
 
-			{/* Модальное окно ошибки */}
 			<Dialog open={errorOpen} onClose={handleErrorClose}>
 				<DialogTitle>Ошибка</DialogTitle>
 				<DialogContent>

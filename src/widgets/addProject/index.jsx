@@ -41,7 +41,7 @@ const ProjectModal = ({ isOpen, onClose, onCreate, projects }) => {
 		e.preventDefault()
 		if (projectName && maxStaffNum) {
 			const newProject = {
-				id: `${Math.random().toString(5).substring(2, 9)}`, // Assign a unique string ID
+				id: `${Math.random().toString(5).substring(2, 9)}`,
 				projectName,
 				maxStaffNum: parseInt(maxStaffNum, 10),
 				staff: [],
@@ -129,14 +129,13 @@ const ProjectManager = () => {
 			return
 		}
 
-		// Deep clone to avoid state mutation issues
 		const updatedProjects = JSON.parse(JSON.stringify(projects))
 		const projectAdded = findAndAddChild(updatedProjects, parentName, newProject)
 
 		if (projectAdded) {
 			setProjects(updatedProjects)
 		} else {
-			console.error('Parent project not found')
+			console.error('Родительский компонент не найден')
 		}
 	}
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from './Header.module.scss'
+import styles from './ui/Header.module.scss'
 
 import Container from '@mui/material/Container'
 

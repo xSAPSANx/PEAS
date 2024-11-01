@@ -5,10 +5,8 @@ import '../staffTab/lib/ag-grid.css'
 import '../staffTab/lib/ag-theme-quartz.css'
 
 export const ProjectTab = ({ projects, lastClick }) => {
-	// Find the project with the matching ID
 	const selectedProject = useMemo(() => {
 		const findProjectById = (projectList, id) => {
-			console.log(projectList)
 			for (const project of projectList) {
 				if (project.id === id) return project
 				if (project.children) {
@@ -21,7 +19,6 @@ export const ProjectTab = ({ projects, lastClick }) => {
 		return findProjectById(projects.items, lastClick?.id)
 	}, [projects, lastClick])
 
-	// Set up column definitions
 	const [colDefs] = useState([
 		{ field: 'FullName', headerName: 'ФИО', width: 300 },
 		{ field: 'Grade', width: 100 },
@@ -29,7 +26,6 @@ export const ProjectTab = ({ projects, lastClick }) => {
 		{ field: 'id', headerName: 'ID', width: 300, hide: true },
 	])
 
-	// Use the staff of the selected project as rowData
 	const rowData = useMemo(() => selectedProject?.staff || [], [selectedProject])
 
 	return (

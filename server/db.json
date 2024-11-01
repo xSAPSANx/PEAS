@@ -1,127 +1,712 @@
 {
-  "staff": [
-    {
-      "id": "045h84hl3",
-      "FullName": "Anton",
-      "Grade": "Junior",
-      "ProjectName": "test"
-    },
-    {
-      "id": "lsmfmphq7",
-      "FullName": "Polina",
-      "Grade": "Middle",
-      "ProjectName": "Telegtam"
-    },
-    {
-      "id": "h2yivr7yi",
-      "FullName": "qqqq",
-      "Grade": "Junior",
-      "ProjectName": "dekstop"
-    },
-    {
-      "id": "fxd7nnl82",
-      "FullName": "tttt",
-      "Grade": "Middle",
-      "ProjectName": "Frontend "
-    },
-    {
-      "id": "jm6ozvomd",
-      "FullName": "Иван",
-      "Grade": "Junior",
-      "ProjectName": "Telegtam"
-    },
-    {
-      "id": "n13mkvr2u",
-      "FullName": "Омез",
-      "Grade": "Middle",
-      "ProjectName": "mobile"
-    }
-  ],
-  "projects": [
-    {
-      "id": "1204123",
-      "projectName": "Telegtam",
-      "maxStaffNum": 50,
-      "staff": [
-        {
-          "FullName": "Polina",
-          "Grade": "Middle",
-          "ProjectName": "Telegtam",
-          "id": "lsmfmphq7"
-        },
-        {
-          "FullName": "Иван",
-          "Grade": "Junior",
-          "ProjectName": "Telegtam",
-          "id": "jm6ozvomd"
-        }
-      ],
-      "children": [
-        {
-          "id": "0101434",
-          "projectName": "dekstop",
-          "maxStaffNum": 25,
-          "staff": [
-            {
-              "id": "h2yivr7yi",
-              "FullName": "qqqq",
-              "Grade": "Junior",
-              "ProjectName": "dekstop"
-            }
-          ],
-          "children": [
-            {
-              "id": "4124131",
-              "projectName": "Frontend ",
-              "maxStaffNum": 5,
-              "staff": [
-                {
-                  "id": "fxd7nnl82",
-                  "FullName": "tttt",
-                  "Grade": "Middle",
-                  "ProjectName": "Frontend "
-                }
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "2403210",
-          "projectName": "mobile",
-          "maxStaffNum": 25,
-          "staff": [
-            {
-              "id": "n13mkvr2u",
-              "FullName": "Омез",
-              "Grade": "Middle",
-              "ProjectName": "mobile"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "4341323",
-          "projectName": "Backend",
-          "maxStaffNum": 5,
-          "staff": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "2204224",
-      "projectName": "test",
-      "maxStaffNum": 1,
-      "staff": [
-        {
-          "id": "045h84hl3",
-          "FullName": "Anton",
-          "Grade": "Junior",
-          "ProjectName": "test"
-        }
-      ],
-      "children": []
-    }
-  ]
+	"staff": [
+		{ "id": "s001", "FullName": "Иванов Иван Иванович", "Grade": "Middle", "ProjectName": "UI/UX" },
+		{ "id": "s002", "FullName": "Петров Петр Петрович", "Grade": "Junior", "ProjectName": "UI/UX" },
+		{ "id": "s003", "FullName": "Сидорова Анна Сергеевна", "Grade": "Senior", "ProjectName": "Адаптивная верстка" },
+		{ "id": "s004", "FullName": "Кузнецова Мария Ивановна", "Grade": "Middle", "ProjectName": "Адаптивная верстка" },
+		{ "id": "s005", "FullName": "Васильев Дмитрий Александрович", "Grade": "Senior", "ProjectName": "iOS" },
+		{ "id": "s006", "FullName": "Морозов Алексей Николаевич", "Grade": "Middle", "ProjectName": "iOS" },
+		{ "id": "s007", "FullName": "Федоров Николай Петрович", "Grade": "Junior", "ProjectName": "iOS" },
+		{ "id": "s008", "FullName": "Лебедева Елена Михайловна", "Grade": "Middle", "ProjectName": "Android" },
+		{ "id": "s009", "FullName": "Григорьев Сергей Владимирович", "Grade": "Junior", "ProjectName": "Android" },
+		{ "id": "s010", "FullName": "Новикова Ольга Андреевна", "Grade": "Junior", "ProjectName": "Android" },
+		{ "id": "s011", "FullName": "Смирнов Андрей Сергеевич", "Grade": "Senior", "ProjectName": "API" },
+		{ "id": "s012", "FullName": "Ковалев Артем Олегович", "Grade": "Middle", "ProjectName": "API" },
+		{ "id": "s013", "FullName": "Воробьева Наталья Дмитриевна", "Grade": "Junior", "ProjectName": "API" },
+		{ "id": "s014", "FullName": "Ильин Михаил Викторович", "Grade": "Senior", "ProjectName": "Базы данных" },
+		{ "id": "s015", "FullName": "Тихонов Алексей Евгеньевич", "Grade": "Middle", "ProjectName": "Базы данных" },
+		{ "id": "s016", "FullName": "Макарова Елена Владимировна", "Grade": "Junior", "ProjectName": "Базы данных" },
+		{
+			"id": "s017",
+			"FullName": "Соловьев Иван Петрович",
+			"Grade": "Middle",
+			"ProjectName": "Автоматизированное тестирование"
+		},
+		{
+			"id": "s018",
+			"FullName": "Зайцева Анастасия Сергеевна",
+			"Grade": "Junior",
+			"ProjectName": "Автоматизированное тестирование"
+		},
+		{ "id": "s019", "FullName": "Борисов Дмитрий Николаевич", "Grade": "Middle", "ProjectName": "Ручное тестирование" },
+		{ "id": "s020", "FullName": "Фролов Сергей Андреевич", "Grade": "Senior", "ProjectName": "CI/CD" },
+		{ "id": "s021", "FullName": "Карпов Алексей Сергеевич", "Grade": "Middle", "ProjectName": "Инфраструктура" },
+		{ "id": "s022", "FullName": "Мартынова Ольга Ивановна", "Grade": "Senior", "ProjectName": "Контент-маркетинг" },
+		{ "id": "s023", "FullName": "Галкин Андрей Владимирович", "Grade": "Middle", "ProjectName": "Контент-маркетинг" },
+		{ "id": "s024", "FullName": "Степанова Анна Сергеевна", "Grade": "Junior", "ProjectName": "Контент-маркетинг" },
+		{ "id": "s025", "FullName": "Николаев Сергей Дмитриевич", "Grade": "Middle", "ProjectName": "Контент-маркетинг" },
+		{ "id": "s026", "FullName": "Орлова Елена Алексеевна", "Grade": "Junior", "ProjectName": "Контент-маркетинг" },
+		{ "id": "s027", "FullName": "Киселев Дмитрий Сергеевич", "Grade": "Senior", "ProjectName": "SMM-аналитика" },
+		{ "id": "s028", "FullName": "Гришина Мария Петровна", "Grade": "Middle", "ProjectName": "SMM-аналитика" },
+		{ "id": "s029", "FullName": "Романов Александр Николаевич", "Grade": "Junior", "ProjectName": "SMM-аналитика" },
+		{ "id": "s030", "FullName": "Осипова Екатерина Сергеевна", "Grade": "Middle", "ProjectName": "SMM-аналитика" }
+	],
+	"projects": [
+		{
+			"id": "p001",
+			"projectName": "Мессенджер",
+			"maxStaffNum": 50,
+			"staff": [
+				{ "id": "s001", "FullName": "Иванов Иван Иванович", "Grade": "Middle", "ProjectName": "UI/UX" },
+				{ "id": "s002", "FullName": "Петров Петр Петрович", "Grade": "Junior", "ProjectName": "UI/UX" },
+				{ "id": "s003", "FullName": "Сидорова Анна Сергеевна", "Grade": "Senior", "ProjectName": "Адаптивная верстка" },
+				{
+					"id": "s004",
+					"FullName": "Кузнецова Мария Ивановна",
+					"Grade": "Middle",
+					"ProjectName": "Адаптивная верстка"
+				},
+				{ "id": "s005", "FullName": "Васильев Дмитрий Александрович", "Grade": "Senior", "ProjectName": "iOS" },
+				{ "id": "s006", "FullName": "Морозов Алексей Николаевич", "Grade": "Middle", "ProjectName": "iOS" },
+				{ "id": "s007", "FullName": "Федоров Николай Петрович", "Grade": "Junior", "ProjectName": "iOS" },
+				{ "id": "s008", "FullName": "Лебедева Елена Михайловна", "Grade": "Middle", "ProjectName": "Android" },
+				{ "id": "s009", "FullName": "Григорьев Сергей Владимирович", "Grade": "Junior", "ProjectName": "Android" },
+				{ "id": "s010", "FullName": "Новикова Ольга Андреевна", "Grade": "Junior", "ProjectName": "Android" },
+				{ "id": "s011", "FullName": "Смирнов Андрей Сергеевич", "Grade": "Senior", "ProjectName": "API" },
+				{ "id": "s012", "FullName": "Ковалев Артем Олегович", "Grade": "Middle", "ProjectName": "API" },
+				{ "id": "s013", "FullName": "Воробьева Наталья Дмитриевна", "Grade": "Junior", "ProjectName": "API" },
+				{ "id": "s014", "FullName": "Ильин Михаил Викторович", "Grade": "Senior", "ProjectName": "Базы данных" },
+				{ "id": "s015", "FullName": "Тихонов Алексей Евгеньевич", "Grade": "Middle", "ProjectName": "Базы данных" },
+				{ "id": "s016", "FullName": "Макарова Елена Владимировна", "Grade": "Junior", "ProjectName": "Базы данных" },
+				{
+					"id": "s017",
+					"FullName": "Соловьев Иван Петрович",
+					"Grade": "Middle",
+					"ProjectName": "Автоматизированное тестирование"
+				},
+				{
+					"id": "s018",
+					"FullName": "Зайцева Анастасия Сергеевна",
+					"Grade": "Junior",
+					"ProjectName": "Автоматизированное тестирование"
+				},
+				{
+					"id": "s019",
+					"FullName": "Борисов Дмитрий Николаевич",
+					"Grade": "Middle",
+					"ProjectName": "Ручное тестирование"
+				},
+				{ "id": "s020", "FullName": "Фролов Сергей Андреевич", "Grade": "Senior", "ProjectName": "CI/CD" },
+				{ "id": "s021", "FullName": "Карпов Алексей Сергеевич", "Grade": "Middle", "ProjectName": "Инфраструктура" },
+				{ "id": "s022", "FullName": "Мартынова Ольга Ивановна", "Grade": "Senior", "ProjectName": "Контент-маркетинг" },
+				{
+					"id": "s023",
+					"FullName": "Галкин Андрей Владимирович",
+					"Grade": "Middle",
+					"ProjectName": "Контент-маркетинг"
+				},
+				{ "id": "s024", "FullName": "Степанова Анна Сергеевна", "Grade": "Junior", "ProjectName": "Контент-маркетинг" },
+				{
+					"id": "s025",
+					"FullName": "Николаев Сергей Дмитриевич",
+					"Grade": "Middle",
+					"ProjectName": "Контент-маркетинг"
+				},
+				{ "id": "s026", "FullName": "Орлова Елена Алексеевна", "Grade": "Junior", "ProjectName": "Контент-маркетинг" },
+				{ "id": "s027", "FullName": "Киселев Дмитрий Сергеевич", "Grade": "Senior", "ProjectName": "SMM-аналитика" },
+				{ "id": "s028", "FullName": "Гришина Мария Петровна", "Grade": "Middle", "ProjectName": "SMM-аналитика" },
+				{ "id": "s029", "FullName": "Романов Александр Николаевич", "Grade": "Junior", "ProjectName": "SMM-аналитика" },
+				{ "id": "s030", "FullName": "Осипова Екатерина Сергеевна", "Grade": "Middle", "ProjectName": "SMM-аналитика" }
+			],
+			"children": [
+				{
+					"id": "p002",
+					"projectName": "Разработка",
+					"maxStaffNum": 30,
+					"staff": [
+						{ "id": "s001", "FullName": "Иванов Иван Иванович", "Grade": "Middle", "ProjectName": "UI/UX" },
+						{ "id": "s002", "FullName": "Петров Петр Петрович", "Grade": "Junior", "ProjectName": "UI/UX" },
+						{
+							"id": "s003",
+							"FullName": "Сидорова Анна Сергеевна",
+							"Grade": "Senior",
+							"ProjectName": "Адаптивная верстка"
+						},
+						{
+							"id": "s004",
+							"FullName": "Кузнецова Мария Ивановна",
+							"Grade": "Middle",
+							"ProjectName": "Адаптивная верстка"
+						},
+						{ "id": "s005", "FullName": "Васильев Дмитрий Александрович", "Grade": "Senior", "ProjectName": "iOS" },
+						{ "id": "s006", "FullName": "Морозов Алексей Николаевич", "Grade": "Middle", "ProjectName": "iOS" },
+						{ "id": "s007", "FullName": "Федоров Николай Петрович", "Grade": "Junior", "ProjectName": "iOS" },
+						{ "id": "s008", "FullName": "Лебедева Елена Михайловна", "Grade": "Middle", "ProjectName": "Android" },
+						{ "id": "s009", "FullName": "Григорьев Сергей Владимирович", "Grade": "Junior", "ProjectName": "Android" },
+						{ "id": "s010", "FullName": "Новикова Ольга Андреевна", "Grade": "Junior", "ProjectName": "Android" },
+						{ "id": "s011", "FullName": "Смирнов Андрей Сергеевич", "Grade": "Senior", "ProjectName": "API" },
+						{ "id": "s012", "FullName": "Ковалев Артем Олегович", "Grade": "Middle", "ProjectName": "API" },
+						{ "id": "s013", "FullName": "Воробьева Наталья Дмитриевна", "Grade": "Junior", "ProjectName": "API" },
+						{ "id": "s014", "FullName": "Ильин Михаил Викторович", "Grade": "Senior", "ProjectName": "Базы данных" },
+						{ "id": "s015", "FullName": "Тихонов Алексей Евгеньевич", "Grade": "Middle", "ProjectName": "Базы данных" },
+						{
+							"id": "s016",
+							"FullName": "Макарова Елена Владимировна",
+							"Grade": "Junior",
+							"ProjectName": "Базы данных"
+						},
+						{
+							"id": "s017",
+							"FullName": "Соловьев Иван Петрович",
+							"Grade": "Middle",
+							"ProjectName": "Автоматизированное тестирование"
+						},
+						{
+							"id": "s018",
+							"FullName": "Зайцева Анастасия Сергеевна",
+							"Grade": "Junior",
+							"ProjectName": "Автоматизированное тестирование"
+						},
+						{
+							"id": "s019",
+							"FullName": "Борисов Дмитрий Николаевич",
+							"Grade": "Middle",
+							"ProjectName": "Ручное тестирование"
+						},
+						{ "id": "s020", "FullName": "Фролов Сергей Андреевич", "Grade": "Senior", "ProjectName": "CI/CD" },
+						{ "id": "s021", "FullName": "Карпов Алексей Сергеевич", "Grade": "Middle", "ProjectName": "Инфраструктура" }
+					],
+					"children": [
+						{
+							"id": "p003",
+							"projectName": "Фронтенд",
+							"maxStaffNum": 15,
+							"staff": [
+								{ "id": "s001", "FullName": "Иванов Иван Иванович", "Grade": "Middle", "ProjectName": "UI/UX" },
+								{ "id": "s002", "FullName": "Петров Петр Петрович", "Grade": "Junior", "ProjectName": "UI/UX" },
+								{
+									"id": "s003",
+									"FullName": "Сидорова Анна Сергеевна",
+									"Grade": "Senior",
+									"ProjectName": "Адаптивная верстка"
+								},
+								{
+									"id": "s004",
+									"FullName": "Кузнецова Мария Ивановна",
+									"Grade": "Middle",
+									"ProjectName": "Адаптивная верстка"
+								},
+								{ "id": "s005", "FullName": "Васильев Дмитрий Александрович", "Grade": "Senior", "ProjectName": "iOS" },
+								{ "id": "s006", "FullName": "Морозов Алексей Николаевич", "Grade": "Middle", "ProjectName": "iOS" },
+								{ "id": "s007", "FullName": "Федоров Николай Петрович", "Grade": "Junior", "ProjectName": "iOS" },
+								{ "id": "s008", "FullName": "Лебедева Елена Михайловна", "Grade": "Middle", "ProjectName": "Android" },
+								{
+									"id": "s009",
+									"FullName": "Григорьев Сергей Владимирович",
+									"Grade": "Junior",
+									"ProjectName": "Android"
+								},
+								{ "id": "s010", "FullName": "Новикова Ольга Андреевна", "Grade": "Junior", "ProjectName": "Android" }
+							],
+							"children": [
+								{
+									"id": "p004",
+									"projectName": "Web-разработка",
+									"maxStaffNum": 8,
+									"staff": [
+										{ "id": "s001", "FullName": "Иванов Иван Иванович", "Grade": "Middle", "ProjectName": "UI/UX" },
+										{ "id": "s002", "FullName": "Петров Петр Петрович", "Grade": "Junior", "ProjectName": "UI/UX" },
+										{
+											"id": "s003",
+											"FullName": "Сидорова Анна Сергеевна",
+											"Grade": "Senior",
+											"ProjectName": "Адаптивная верстка"
+										},
+										{
+											"id": "s004",
+											"FullName": "Кузнецова Мария Ивановна",
+											"Grade": "Middle",
+											"ProjectName": "Адаптивная верстка"
+										}
+									],
+									"children": [
+										{
+											"id": "p005",
+											"projectName": "UI/UX",
+											"maxStaffNum": 4,
+											"staff": [
+												{ "id": "s001", "FullName": "Иванов Иван Иванович", "Grade": "Middle", "ProjectName": "UI/UX" },
+												{ "id": "s002", "FullName": "Петров Петр Петрович", "Grade": "Junior", "ProjectName": "UI/UX" }
+											],
+											"children": []
+										},
+										{
+											"id": "p006",
+											"projectName": "Адаптивная верстка",
+											"maxStaffNum": 4,
+											"staff": [
+												{
+													"id": "s003",
+													"FullName": "Сидорова Анна Сергеевна",
+													"Grade": "Senior",
+													"ProjectName": "Адаптивная верстка"
+												},
+												{
+													"id": "s004",
+													"FullName": "Кузнецова Мария Ивановна",
+													"Grade": "Middle",
+													"ProjectName": "Адаптивная верстка"
+												}
+											],
+											"children": []
+										}
+									]
+								},
+								{
+									"id": "p007",
+									"projectName": "Мобильная разработка",
+									"maxStaffNum": 7,
+									"staff": [
+										{
+											"id": "s005",
+											"FullName": "Васильев Дмитрий Александрович",
+											"Grade": "Senior",
+											"ProjectName": "iOS"
+										},
+										{ "id": "s006", "FullName": "Морозов Алексей Николаевич", "Grade": "Middle", "ProjectName": "iOS" },
+										{ "id": "s007", "FullName": "Федоров Николай Петрович", "Grade": "Junior", "ProjectName": "iOS" },
+										{
+											"id": "s008",
+											"FullName": "Лебедева Елена Михайловна",
+											"Grade": "Middle",
+											"ProjectName": "Android"
+										},
+										{
+											"id": "s009",
+											"FullName": "Григорьев Сергей Владимирович",
+											"Grade": "Junior",
+											"ProjectName": "Android"
+										},
+										{
+											"id": "s010",
+											"FullName": "Новикова Ольга Андреевна",
+											"Grade": "Junior",
+											"ProjectName": "Android"
+										}
+									],
+									"children": [
+										{
+											"id": "p008",
+											"projectName": "iOS",
+											"maxStaffNum": 4,
+											"staff": [
+												{
+													"id": "s005",
+													"FullName": "Васильев Дмитрий Александрович",
+													"Grade": "Senior",
+													"ProjectName": "iOS"
+												},
+												{
+													"id": "s006",
+													"FullName": "Морозов Алексей Николаевич",
+													"Grade": "Middle",
+													"ProjectName": "iOS"
+												},
+												{
+													"id": "s007",
+													"FullName": "Федоров Николай Петрович",
+													"Grade": "Junior",
+													"ProjectName": "iOS"
+												}
+											],
+											"children": []
+										},
+										{
+											"id": "p009",
+											"projectName": "Android",
+											"maxStaffNum": 3,
+											"staff": [
+												{
+													"id": "s008",
+													"FullName": "Лебедева Елена Михайловна",
+													"Grade": "Middle",
+													"ProjectName": "Android"
+												},
+												{
+													"id": "s009",
+													"FullName": "Григорьев Сергей Владимирович",
+													"Grade": "Junior",
+													"ProjectName": "Android"
+												},
+												{
+													"id": "s010",
+													"FullName": "Новикова Ольга Андреевна",
+													"Grade": "Junior",
+													"ProjectName": "Android"
+												}
+											],
+											"children": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"id": "p010",
+							"projectName": "Бэкенд",
+							"maxStaffNum": 10,
+							"staff": [
+								{ "id": "s011", "FullName": "Смирнов Андрей Сергеевич", "Grade": "Senior", "ProjectName": "API" },
+								{ "id": "s012", "FullName": "Ковалев Артем Олегович", "Grade": "Middle", "ProjectName": "API" },
+								{ "id": "s013", "FullName": "Воробьева Наталья Дмитриевна", "Grade": "Junior", "ProjectName": "API" },
+								{
+									"id": "s014",
+									"FullName": "Ильин Михаил Викторович",
+									"Grade": "Senior",
+									"ProjectName": "Базы данных"
+								},
+								{
+									"id": "s015",
+									"FullName": "Тихонов Алексей Евгеньевич",
+									"Grade": "Middle",
+									"ProjectName": "Базы данных"
+								},
+								{
+									"id": "s016",
+									"FullName": "Макарова Елена Владимировна",
+									"Grade": "Junior",
+									"ProjectName": "Базы данных"
+								}
+							],
+							"children": [
+								{
+									"id": "p011",
+									"projectName": "API",
+									"maxStaffNum": 5,
+									"staff": [
+										{ "id": "s011", "FullName": "Смирнов Андрей Сергеевич", "Grade": "Senior", "ProjectName": "API" },
+										{ "id": "s012", "FullName": "Ковалев Артем Олегович", "Grade": "Middle", "ProjectName": "API" },
+										{
+											"id": "s013",
+											"FullName": "Воробьева Наталья Дмитриевна",
+											"Grade": "Junior",
+											"ProjectName": "API"
+										}
+									],
+									"children": []
+								},
+								{
+									"id": "p012",
+									"projectName": "Базы данных",
+									"maxStaffNum": 5,
+									"staff": [
+										{
+											"id": "s014",
+											"FullName": "Ильин Михаил Викторович",
+											"Grade": "Senior",
+											"ProjectName": "Базы данных"
+										},
+										{
+											"id": "s015",
+											"FullName": "Тихонов Алексей Евгеньевич",
+											"Grade": "Middle",
+											"ProjectName": "Базы данных"
+										},
+										{
+											"id": "s016",
+											"FullName": "Макарова Елена Владимировна",
+											"Grade": "Junior",
+											"ProjectName": "Базы данных"
+										}
+									],
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "p013",
+							"projectName": "Тестирование",
+							"maxStaffNum": 3,
+							"staff": [
+								{
+									"id": "s017",
+									"FullName": "Соловьев Иван Петрович",
+									"Grade": "Middle",
+									"ProjectName": "Автоматизированное тестирование"
+								},
+								{
+									"id": "s018",
+									"FullName": "Зайцева Анастасия Сергеевна",
+									"Grade": "Junior",
+									"ProjectName": "Автоматизированное тестирование"
+								},
+								{
+									"id": "s019",
+									"FullName": "Борисов Дмитрий Николаевич",
+									"Grade": "Middle",
+									"ProjectName": "Ручное тестирование"
+								}
+							],
+							"children": [
+								{
+									"id": "p014",
+									"projectName": "Автоматизированное тестирование",
+									"maxStaffNum": 2,
+									"staff": [
+										{
+											"id": "s017",
+											"FullName": "Соловьев Иван Петрович",
+											"Grade": "Middle",
+											"ProjectName": "Автоматизированное тестирование"
+										},
+										{
+											"id": "s018",
+											"FullName": "Зайцева Анастасия Сергеевна",
+											"Grade": "Junior",
+											"ProjectName": "Автоматизированное тестирование"
+										}
+									],
+									"children": []
+								},
+								{
+									"id": "p015",
+									"projectName": "Ручное тестирование",
+									"maxStaffNum": 1,
+									"staff": [
+										{
+											"id": "s019",
+											"FullName": "Борисов Дмитрий Николаевич",
+											"Grade": "Middle",
+											"ProjectName": "Ручное тестирование"
+										}
+									],
+									"children": []
+								}
+							]
+						},
+						{
+							"id": "p016",
+							"projectName": "DevOps",
+							"maxStaffNum": 2,
+							"staff": [
+								{ "id": "s020", "FullName": "Фролов Сергей Андреевич", "Grade": "Senior", "ProjectName": "CI/CD" },
+								{
+									"id": "s021",
+									"FullName": "Карпов Алексей Сергеевич",
+									"Grade": "Middle",
+									"ProjectName": "Инфраструктура"
+								}
+							],
+							"children": [
+								{
+									"id": "p017",
+									"projectName": "CI/CD",
+									"maxStaffNum": 1,
+									"staff": [
+										{ "id": "s020", "FullName": "Фролов Сергей Андреевич", "Grade": "Senior", "ProjectName": "CI/CD" }
+									],
+									"children": []
+								},
+								{
+									"id": "p018",
+									"projectName": "Инфраструктура",
+									"maxStaffNum": 1,
+									"staff": [
+										{
+											"id": "s021",
+											"FullName": "Карпов Алексей Сергеевич",
+											"Grade": "Middle",
+											"ProjectName": "Инфраструктура"
+										}
+									],
+									"children": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "p019",
+					"projectName": "Маркетинг",
+					"maxStaffNum": 20,
+					"staff": [
+						{
+							"id": "s022",
+							"FullName": "Мартынова Ольга Ивановна",
+							"Grade": "Senior",
+							"ProjectName": "Контент-маркетинг"
+						},
+						{
+							"id": "s023",
+							"FullName": "Галкин Андрей Владимирович",
+							"Grade": "Middle",
+							"ProjectName": "Контент-маркетинг"
+						},
+						{
+							"id": "s024",
+							"FullName": "Степанова Анна Сергеевна",
+							"Grade": "Junior",
+							"ProjectName": "Контент-маркетинг"
+						},
+						{
+							"id": "s025",
+							"FullName": "Николаев Сергей Дмитриевич",
+							"Grade": "Middle",
+							"ProjectName": "Контент-маркетинг"
+						},
+						{
+							"id": "s026",
+							"FullName": "Орлова Елена Алексеевна",
+							"Grade": "Junior",
+							"ProjectName": "Контент-маркетинг"
+						},
+						{
+							"id": "s027",
+							"FullName": "Киселев Дмитрий Сергеевич",
+							"Grade": "Senior",
+							"ProjectName": "SMM-аналитика"
+						},
+						{ "id": "s028", "FullName": "Гришина Мария Петровна", "Grade": "Middle", "ProjectName": "SMM-аналитика" },
+						{
+							"id": "s029",
+							"FullName": "Романов Александр Николаевич",
+							"Grade": "Junior",
+							"ProjectName": "SMM-аналитика"
+						},
+						{
+							"id": "s030",
+							"FullName": "Осипова Екатерина Сергеевна",
+							"Grade": "Middle",
+							"ProjectName": "SMM-аналитика"
+						}
+					],
+					"children": [
+						{
+							"id": "p020",
+							"projectName": "Социальные Медиа",
+							"maxStaffNum": 20,
+							"staff": [
+								{
+									"id": "s022",
+									"FullName": "Мартынова Ольга Ивановна",
+									"Grade": "Senior",
+									"ProjectName": "Контент-маркетинг"
+								},
+								{
+									"id": "s023",
+									"FullName": "Галкин Андрей Владимирович",
+									"Grade": "Middle",
+									"ProjectName": "Контент-маркетинг"
+								},
+								{
+									"id": "s024",
+									"FullName": "Степанова Анна Сергеевна",
+									"Grade": "Junior",
+									"ProjectName": "Контент-маркетинг"
+								},
+								{
+									"id": "s025",
+									"FullName": "Николаев Сергей Дмитриевич",
+									"Grade": "Middle",
+									"ProjectName": "Контент-маркетинг"
+								},
+								{
+									"id": "s026",
+									"FullName": "Орлова Елена Алексеевна",
+									"Grade": "Junior",
+									"ProjectName": "Контент-маркетинг"
+								},
+								{
+									"id": "s027",
+									"FullName": "Киселев Дмитрий Сергеевич",
+									"Grade": "Senior",
+									"ProjectName": "SMM-аналитика"
+								},
+								{
+									"id": "s028",
+									"FullName": "Гришина Мария Петровна",
+									"Grade": "Middle",
+									"ProjectName": "SMM-аналитика"
+								},
+								{
+									"id": "s029",
+									"FullName": "Романов Александр Николаевич",
+									"Grade": "Junior",
+									"ProjectName": "SMM-аналитика"
+								},
+								{
+									"id": "s030",
+									"FullName": "Осипова Екатерина Сергеевна",
+									"Grade": "Middle",
+									"ProjectName": "SMM-аналитика"
+								}
+							],
+							"children": [
+								{
+									"id": "p021",
+									"projectName": "Контент-маркетинг",
+									"maxStaffNum": 10,
+									"staff": [
+										{
+											"id": "s022",
+											"FullName": "Мартынова Ольга Ивановна",
+											"Grade": "Senior",
+											"ProjectName": "Контент-маркетинг"
+										},
+										{
+											"id": "s023",
+											"FullName": "Галкин Андрей Владимирович",
+											"Grade": "Middle",
+											"ProjectName": "Контент-маркетинг"
+										},
+										{
+											"id": "s024",
+											"FullName": "Степанова Анна Сергеевна",
+											"Grade": "Junior",
+											"ProjectName": "Контент-маркетинг"
+										},
+										{
+											"id": "s025",
+											"FullName": "Николаев Сергей Дмитриевич",
+											"Grade": "Middle",
+											"ProjectName": "Контент-маркетинг"
+										},
+										{
+											"id": "s026",
+											"FullName": "Орлова Елена Алексеевна",
+											"Grade": "Junior",
+											"ProjectName": "Контент-маркетинг"
+										}
+									],
+									"children": []
+								},
+								{
+									"id": "p022",
+									"projectName": "SMM-аналитика",
+									"maxStaffNum": 10,
+									"staff": [
+										{
+											"id": "s027",
+											"FullName": "Киселев Дмитрий Сергеевич",
+											"Grade": "Senior",
+											"ProjectName": "SMM-аналитика"
+										},
+										{
+											"id": "s028",
+											"FullName": "Гришина Мария Петровна",
+											"Grade": "Middle",
+											"ProjectName": "SMM-аналитика"
+										},
+										{
+											"id": "s029",
+											"FullName": "Романов Александр Николаевич",
+											"Grade": "Junior",
+											"ProjectName": "SMM-аналитика"
+										},
+										{
+											"id": "s030",
+											"FullName": "Осипова Екатерина Сергеевна",
+											"Grade": "Middle",
+											"ProjectName": "SMM-аналитика"
+										}
+									],
+									"children": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
 }
